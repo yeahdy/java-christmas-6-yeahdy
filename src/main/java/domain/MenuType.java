@@ -1,10 +1,5 @@
 package domain;
 
 public enum MenuType {
-
-    APPETIZER,
-    MAIN,
-    DESERT,
-    DRINK
-
+    APPETIZER, MAIN, DESERT, DRINK
 }
