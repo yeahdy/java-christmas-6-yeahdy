@@ -1,5 +1,6 @@
 package domain;
 
+import constants.AnniversaryDate;
 import constants.DayType;
 import java.time.LocalDate;
 import java.util.HashMap;
@@ -24,8 +25,12 @@ public class EventReservation {
     }
 
     private DayType createDay(LocalDate reservationDate){
-        String day = DateUtils.getDayByLocalDate(reservationDate);
-        return DayType.getDayTypeByString(day);
+        DayType dayType = AnniversaryDate.getAnniversaryDayType(reservationDate);;
+        if(dayType != null){
+            return dayType;
+        }
+
+        return DayType.getDayTypeByLocalDate(reservationDate);
     }
 
 }

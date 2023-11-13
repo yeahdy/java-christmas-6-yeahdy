@@ -1,5 +1,8 @@
 package constants;
 
+import java.time.LocalDate;
+import utils.DateUtils;
+
 public enum DayType {
 
     MONDAY,
@@ -10,7 +13,9 @@ public enum DayType {
     SATURDAY,
     SUNDAY;
 
-    public static DayType getDayTypeByString(String dayName) {
+    public static DayType getDayTypeByLocalDate(LocalDate date) {
+        String dayName = DateUtils.getDayByLocalDate(date);
+
         for (DayType dayType : values()) {
             if (dayType.toString().equals(dayName)) {
                 return dayType;
