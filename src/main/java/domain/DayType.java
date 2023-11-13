@@ -1,5 +1,6 @@
-package constants;
+package domain;
 
+import constants.ErrorCodeConstant;
 import java.time.LocalDate;
 import utils.DateUtils;
 

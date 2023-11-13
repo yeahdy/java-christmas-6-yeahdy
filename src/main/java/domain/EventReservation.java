@@ -1,7 +1,5 @@
 package domain;
 
-import constants.AnniversaryDate;
-import constants.DayType;
 import java.time.LocalDate;
 import java.util.HashMap;
 import utils.DateUtils;

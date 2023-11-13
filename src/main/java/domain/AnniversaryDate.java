@@ -1,6 +1,6 @@
-package constants;
+package domain;
 
-import static constants.DayType.MONDAY;
+import static domain.DayType.MONDAY;
 
 import java.time.LocalDate;
 
