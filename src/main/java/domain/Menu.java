@@ -21,13 +21,22 @@ public enum Menu {
     CHAMPAGNE(DRINK,"샴페인",25000);
 
     private MenuType menuType;
-    private String foodName;
+    private String food;
     private int price;
 
-    Menu(MenuType menuType, String foodName, int price){
+    Menu(MenuType menuType, String food, int price){
         this.menuType = menuType;
-        this.foodName = foodName;
+        this.food = food;
         this.price = price;
+    }
+
+    public static Menu getMenu(String food){
+        for(Menu menu : values()){
+            if(menu.food.equals(food)){
+                return menu;
+            }
+        }
+        return null;
     }
 
 }
