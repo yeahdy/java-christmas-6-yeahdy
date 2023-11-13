@@ -6,13 +6,14 @@ import validators.ReservationDateValidator;
 
 public class ReservationDate {
 
-    private LocalDate reservationFullDate;  //날짜(년/월/일)
-    private int reservedDate;   //예약일
-    private DayType day; //요일
+    private final LocalDate reservationFullDate;  //날짜(년/월/일)
+    private final int reservedDate;   //예약일
+    private final DayType day; //요일
 
     public ReservationDate(int reservedDate){
         ReservationDateValidator.validateBetweenDate(reservedDate);
 
+        this.reservedDate = reservedDate;
         this.reservationFullDate = createReservationFullDate(reservedDate);
         this.day = createDay(this.reservationFullDate);
     }
