@@ -1,6 +1,6 @@
 package service;
 
-import domain.EventReservation;
+import domain.ReservationDate;
 import utils.PrintUtils;
 import view.InputView;
 import view.OutputView;
@@ -11,14 +11,14 @@ public class EventReservationService {
 
     private OutputView outputView = new OutputView();
 
-    private EventReservation eventReservation;
+    private ReservationDate reservationDate;
 
     public void createEventReservation(){
         outputView.printGreeting();
         while (true){
             try{
                 int date = inputView.readDate();
-                eventReservation = new EventReservation(date);
+                reservationDate = new ReservationDate(date);
                 break;
             }catch (IllegalArgumentException iae){
                 PrintUtils.errorPrint(iae.getMessage());

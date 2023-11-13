@@ -8,17 +8,17 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
-public class EventReservationTest {
+public class ReservationDateTest {
 
     @ParameterizedTest
     @MethodSource("getNumberAndDayType")
     @DisplayName("이벤트 예약 날짜에 따른 요일 타입 테스트")
     void create_eventReservation_test(int number, DayType dayType) {
         //when
-        EventReservation eventReservation = new EventReservation(number);
+        ReservationDate reservationDate = new ReservationDate(number);
 
         //then
-        assertThat(eventReservation)
+        assertThat(reservationDate)
                 .isNotNull()
                 .extracting("day")
                 .isEqualTo(dayType);
