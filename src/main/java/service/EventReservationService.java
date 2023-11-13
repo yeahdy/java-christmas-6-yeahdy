@@ -1,7 +1,6 @@
 package service;
 
 import domain.ReservationDate;
-import domain.ReservationMenu;
 import utils.PrintUtils;
 import view.InputView;
 import view.OutputView;
@@ -9,11 +8,9 @@ import view.OutputView;
 public class EventReservationService {
 
     private InputView inputView = new InputView();
-
     private OutputView outputView = new OutputView();
-
     private ReservationDate reservationDate;
-    private ReservationMenu reservationMenu;
+    private ReservationMenuService reservationMenuService = new ReservationMenuService();
 
     public void createReservationDate(){
         outputView.printGreeting();
@@ -33,8 +30,8 @@ public class EventReservationService {
         while (true){
             try{
                 String order = inputView.readOrder();
-                reservationMenu = new ReservationMenu();
-                String[] orderList = reservationMenu.validateOrder(order);
+                String[] orderList = reservationMenuService.validateOrderList(order);
+                reservationMenuService.validateReservationMenu(orderList);
                 break;
             }catch (IllegalArgumentException iae){
                 PrintUtils.errorPrint(iae.getMessage());
