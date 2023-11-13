@@ -9,13 +9,12 @@ import validators.EventValidator;
 
 public class InputView {
 
-    public String readDate() {
+    public int readDate() {
         PrintUtils.println(GREETING);
         PrintUtils.println(WHEN_IS_THE_DATE);
 
         String date = Console.readLine();
-        EventValidator.validateNumber(date);
-        return date;
+        return EventValidator.validateNumber(date);
     }
 
 }
