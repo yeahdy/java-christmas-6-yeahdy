@@ -6,7 +6,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-public class EventValidatorTest {
+public class ReservationDateValidatorTest {
 
     @ParameterizedTest
     @ValueSource(strings = {" ","","가나","23가나다","!@"})
@@ -14,7 +14,7 @@ public class EventValidatorTest {
     void verify_date_error_message_test(final String characters) {
         //when
         Throwable thrown = Assertions.catchThrowable(() -> {
-            EventValidator.validateNumber(characters);
+            ReservationDateValidator.validateNumber(characters);
         });
 
         // then
@@ -29,7 +29,7 @@ public class EventValidatorTest {
     void verify_between_date_error_message_test(final int number) {
         //when
         Throwable thrown = Assertions.catchThrowable(() -> {
-            EventValidator.validateBetweenDate(number);
+            ReservationDateValidator.validateBetweenDate(number);
         });
 
         // then

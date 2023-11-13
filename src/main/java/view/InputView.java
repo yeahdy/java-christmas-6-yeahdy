@@ -4,7 +4,7 @@ import static constants.EventMessageConstant.WHEN_IS_THE_DATE;
 
 import camp.nextstep.edu.missionutils.Console;
 import utils.PrintUtils;
-import validators.EventValidator;
+import validators.ReservationDateValidator;
 
 public class InputView {
 
@@ -12,7 +12,7 @@ public class InputView {
         PrintUtils.println(WHEN_IS_THE_DATE);
 
         String date = Console.readLine();
-        return EventValidator.validateNumber(date);
+        return ReservationDateValidator.validateNumber(date);
     }
 
 }

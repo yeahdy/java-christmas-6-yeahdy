@@ -5,7 +5,7 @@ import constants.DayType;
 import java.time.LocalDate;
 import java.util.HashMap;
 import utils.DateUtils;
-import validators.EventValidator;
+import validators.ReservationDateValidator;
 
 public class EventReservation {
 
@@ -14,7 +14,7 @@ public class EventReservation {
     private HashMap<Menu,Integer> menuList;
 
     public EventReservation (int number){
-        EventValidator.validateBetweenDate(number);
+        ReservationDateValidator.validateBetweenDate(number);
 
         this.reservationDate = createReservationDate(number);
         this.day = createDay(this.reservationDate);
