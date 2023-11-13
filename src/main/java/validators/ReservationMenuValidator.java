@@ -1,6 +1,8 @@
 package validators;
 
 import constants.ErrorCodeConstant;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class ReservationMenuValidator {
     public static final int MIN_ORDER_COUNT = 1;
@@ -36,6 +38,15 @@ public class ReservationMenuValidator {
         if (orderCount < MIN_ORDER_COUNT) {
             throw new IllegalArgumentException(ErrorCodeConstant.NOT_VALID_MENU_ERROR);
         }
+    }
+
+    /** List의 원소 중 중복이 있을 경우 true, 아닐 경우 false 리턴 */
+    public static boolean isDuplicatesList(List<String> orderList) {
+        List<String> distinctNumbers = orderList.stream()
+                .distinct()
+                .collect(Collectors.toList());
+
+        return distinctNumbers.size() < orderList.size();
     }
 
 }
