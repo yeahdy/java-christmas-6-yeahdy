@@ -23,4 +23,19 @@ public class EventValidatorTest {
                 .hasMessageContaining(ErrorCodeConstant.NOT_VALID_DATE_ERROR);
     }
 
+    @ParameterizedTest
+    @ValueSource(ints = {0,100,32})
+    @DisplayName("입력한 날짜가 1~31 사이가 아닐 경우 예외 발생")
+    void verify_between_date_error_message_test(final int number) {
+        //when
+        Throwable thrown = Assertions.catchThrowable(() -> {
+            EventValidator.validateBetweenDate(number);
+        });
+
+        // then
+        Assertions.assertThat(thrown)
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ErrorCodeConstant.NOT_VALID_DATE_ERROR);
+    }
+
 }
