@@ -1,9 +1,9 @@
 package christmas;
 
-import domain.ReservationDate;
-import domain.ReservationMenu;
+import domain.reservation.model.ReservationDate;
+import domain.reservation.model.ReservationMenu;
 import java.util.List;
-import service.ReservationController;
+import controller.ReservationController;
 
 public class ChristmasEventApplication {
 

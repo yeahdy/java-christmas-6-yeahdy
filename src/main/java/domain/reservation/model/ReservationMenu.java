@@ -1,5 +1,6 @@
-package domain;
+package domain.reservation.model;
 
+import domain.Menu;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;

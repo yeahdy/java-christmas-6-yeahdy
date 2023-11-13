@@ -1,4 +1,4 @@
-package domain;
+package domain.reservation.model;
 
 import java.util.List;
 

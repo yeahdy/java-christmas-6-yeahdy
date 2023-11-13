@@ -1,6 +1,6 @@
-package domain;
+package domain.date;
 
-import static domain.DayType.MONDAY;
+import static domain.date.DayType.MONDAY;
 
 import java.time.LocalDate;
 

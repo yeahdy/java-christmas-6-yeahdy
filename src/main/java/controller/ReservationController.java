@@ -1,8 +1,9 @@
-package service;
+package controller;
 
-import domain.ReservationDate;
-import domain.ReservationMenu;
+import domain.reservation.model.ReservationDate;
+import domain.reservation.model.ReservationMenu;
 import java.util.List;
+import domain.reservation.service.ReservationMenuService;
 import utils.PrintUtils;
 import view.InputView;
 import view.OutputView;

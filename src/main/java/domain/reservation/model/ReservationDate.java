@@ -1,5 +1,7 @@
-package domain;
+package domain.reservation.model;
 
+import domain.date.AnniversaryDate;
+import domain.date.DayType;
 import java.time.LocalDate;
 import utils.DateUtils;
 import validators.ReservationDateValidator;

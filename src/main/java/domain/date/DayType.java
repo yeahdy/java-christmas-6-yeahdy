@@ -1,4 +1,4 @@
-package domain;
+package domain.date;
 
 import constants.ErrorCodeConstant;
 import java.time.LocalDate;

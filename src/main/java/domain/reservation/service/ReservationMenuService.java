@@ -1,7 +1,7 @@
-package service;
+package domain.reservation.service;
 
 import constants.ErrorCodeConstant;
-import domain.ReservationMenu;
+import domain.reservation.model.ReservationMenu;
 import java.util.ArrayList;
 import java.util.List;
 
