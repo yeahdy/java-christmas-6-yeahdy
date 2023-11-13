@@ -1,6 +1,5 @@
 package view;
 
-import static constants.EventMessageConstant.GREETING;
 import static constants.EventMessageConstant.WHEN_IS_THE_DATE;
 
 import camp.nextstep.edu.missionutils.Console;
@@ -10,7 +9,6 @@ import validators.EventValidator;
 public class InputView {
 
     public int readDate() {
-        PrintUtils.println(GREETING);
         PrintUtils.println(WHEN_IS_THE_DATE);
 
         String date = Console.readLine();
