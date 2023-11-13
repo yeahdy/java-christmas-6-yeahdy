@@ -21,7 +21,7 @@ public class EventReservationService {
                 eventReservation = new EventReservation(date);
                 break;
             }catch (IllegalArgumentException iae){
-                PrintUtils.println(iae.getMessage());
+                PrintUtils.errorPrint(iae.getMessage());
             }
         }
     }
