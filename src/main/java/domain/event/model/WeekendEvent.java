@@ -1,6 +1,6 @@
 package domain.event.model;
 
-import domain.MenuType;
+import domain.menu.MenuType;
 import domain.date.DayType;
 import domain.reservation.model.ReservationMenu;
 import java.util.List;

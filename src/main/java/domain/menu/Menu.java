@@ -1,9 +1,9 @@
-package domain;
+package domain.menu;
 
-import static domain.MenuType.APPETIZER;
-import static domain.MenuType.DESERT;
-import static domain.MenuType.DRINK;
-import static domain.MenuType.MAIN;
+import static domain.menu.MenuType.APPETIZER;
+import static domain.menu.MenuType.DESERT;
+import static domain.menu.MenuType.DRINK;
+import static domain.menu.MenuType.MAIN;
 
 public enum Menu {
 

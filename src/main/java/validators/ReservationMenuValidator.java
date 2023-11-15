@@ -1,8 +1,8 @@
 package validators;
 
 import constants.ErrorCodeConstant;
-import domain.Menu;
-import domain.MenuType;
+import domain.menu.Menu;
+import domain.menu.MenuType;
 import java.util.List;
 import java.util.stream.Collectors;
 
