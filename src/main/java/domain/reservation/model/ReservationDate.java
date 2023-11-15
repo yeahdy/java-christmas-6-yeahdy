@@ -20,11 +20,11 @@ public class ReservationDate {
         this.day = createDay(this.reservationFullDate);
     }
 
-    private LocalDate createReservationFullDate(int reservedDate){
+    public LocalDate createReservationFullDate(int reservedDate){
         return DateUtils.getLocalDateByNumber(reservedDate);
     }
 
-    private DayType createDay(LocalDate reservationFullDate){
+    public DayType createDay(LocalDate reservationFullDate){
         DayType dayType = AnniversaryDate.getAnniversaryDayType(reservationFullDate);;
         if(dayType != null){
             return dayType;
@@ -33,7 +33,15 @@ public class ReservationDate {
         return DayType.getDayTypeByLocalDate(reservationFullDate);
     }
 
+    public LocalDate getReservationFullDate() {
+        return reservationFullDate;
+    }
+
     public int getReservedDate() {
         return reservedDate;
+    }
+
+    public DayType getDay() {
+        return day;
     }
 }

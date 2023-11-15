@@ -16,11 +16,19 @@ public class UserReservation {
         this.hasEventBenefit = hasEventBenefit;
     }
 
+    public ReservationDate getReservationDate() {
+        return reservationDate;
+    }
+
     public int getReservedDate(){
         return reservationDate.getReservedDate();
     }
 
     public List<ReservationMenu> getMenuList() {
         return menuList;
+    }
+
+    public boolean isHasEventBenefit() {
+        return hasEventBenefit;
     }
 }
