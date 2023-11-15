@@ -49,41 +49,62 @@ public class UserEventGenerator {
      */
     public List<String> getBenefitsList(EventDiscount eventDiscount) {
         List<String> benefitsList = new ArrayList<>();
-        if (eventDiscount.getChristmasPrice() != 0) {
-            String message = UserEventMessageConstant.BENEFITS_PRICE_LIST
-                    .replace("{event}", UserEventMessageConstant.CHRISTMAS_DISCOUNT);
-            message = message.replace("{price}", getCommaPrice(eventDiscount.getChristmasPrice()));
-            benefitsList.add(message);
-        }
+        benefitsList = addChristmasPriceMessage(eventDiscount.getChristmasPrice(), benefitsList);
+        benefitsList = addWeekdayPriceMessage(eventDiscount.getWeekdayPrice(), benefitsList);
+        benefitsList = addWeekendPriceMessage(eventDiscount.getWeekendPrice(), benefitsList);
+        benefitsList = addSpecialPriceMessage(eventDiscount.getSpecialPrice(),benefitsList);
+        benefitsList = addGiftPriceMessage(eventDiscount.getGiftPrice(),benefitsList);
 
-        if (eventDiscount.getWeekdayPrice() != 0) {
-            String message = UserEventMessageConstant.BENEFITS_PRICE_LIST
-                    .replace("{event}", UserEventMessageConstant.WEEKDAY_DISCOUNT);
-            message = message.replace("{price}", getCommaPrice(eventDiscount.getWeekdayPrice()));
-            benefitsList.add(message);
-        }
+        return benefitsList;
+    }
 
-        if (eventDiscount.getWeekendPrice() != 0) {
-            String message = UserEventMessageConstant.BENEFITS_PRICE_LIST
-                    .replace("{event}", UserEventMessageConstant.WEEKEND_DISCOUNT);
-            message = message.replace("{price}", getCommaPrice(eventDiscount.getWeekendPrice()));
-            benefitsList.add(message);
-        }
+    private List<String> addChristmasPriceMessage(int christmasPrice, List<String> benefitsList){
+        if(christmasPrice == 0) return benefitsList;
+        String message = UserEventMessageConstant.BENEFITS_PRICE_LIST
+                .replace("{event}", UserEventMessageConstant.CHRISTMAS_DISCOUNT);
+        message = message.replace("{price}", getCommaPrice(christmasPrice));
 
-        if (eventDiscount.getSpecialPrice() != 0) {
-            String message = UserEventMessageConstant.BENEFITS_PRICE_LIST
-                    .replace("{event}", UserEventMessageConstant.SPECIAL_DISCOUNT);
-            message = message.replace("{price}", getCommaPrice(eventDiscount.getSpecialPrice()));
-            benefitsList.add(message);
-        }
+        benefitsList.add(message);
+        return benefitsList;
+    }
 
-        if (eventDiscount.getGiftPrice() != 0) {
-            String message = UserEventMessageConstant.BENEFITS_PRICE_LIST
-                    .replace("{event}", UserEventMessageConstant.GIFT_DISCOUNT);
-            message = message.replace("{price}", getCommaPrice(eventDiscount.getGiftPrice()));
-            benefitsList.add(message);
-        }
+    private List<String> addWeekdayPriceMessage(int weekdayPrice, List<String> benefitsList){
+        if(weekdayPrice == 0) return benefitsList;
+        String message = UserEventMessageConstant.BENEFITS_PRICE_LIST
+                .replace("{event}", UserEventMessageConstant.WEEKDAY_DISCOUNT);
+        message = message.replace("{price}", getCommaPrice(weekdayPrice));
 
+        benefitsList.add(message);
+        return benefitsList;
+    }
+
+    private List<String> addWeekendPriceMessage(int weekendPrice, List<String> benefitsList){
+        if(weekendPrice == 0) return benefitsList;
+        String message = UserEventMessageConstant.BENEFITS_PRICE_LIST
+                .replace("{event}", UserEventMessageConstant.WEEKEND_DISCOUNT);
+        message = message.replace("{price}", getCommaPrice(weekendPrice));
+
+        benefitsList.add(message);
+        return benefitsList;
+    }
+
+    private List<String> addSpecialPriceMessage(int specialPrice, List<String> benefitsList){
+        if(specialPrice == 0) return benefitsList;
+        String message = UserEventMessageConstant.BENEFITS_PRICE_LIST
+                .replace("{event}", UserEventMessageConstant.SPECIAL_DISCOUNT);
+        message = message.replace("{price}", getCommaPrice(specialPrice));
+
+        benefitsList.add(message);
+        return benefitsList;
+    }
+
+    private List<String> addGiftPriceMessage(int giftPrice, List<String> benefitsList){
+        if(giftPrice == 0) return benefitsList;
+        String message = UserEventMessageConstant.BENEFITS_PRICE_LIST
+                .replace("{event}", UserEventMessageConstant.GIFT_DISCOUNT);
+        message = message.replace("{price}", getCommaPrice(giftPrice));
+
+        benefitsList.add(message);
         return benefitsList;
     }
 
