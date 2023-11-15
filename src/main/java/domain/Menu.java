@@ -39,4 +39,13 @@ public enum Menu {
         return null;
     }
 
+    public static MenuType getMenuType(String food){
+        for(Menu menu : values()){
+            if(menu.food.equals(food)){
+                return menu.menuType;
+            }
+        }
+        return null;
+    }
+
 }

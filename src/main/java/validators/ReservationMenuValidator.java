@@ -1,6 +1,8 @@
 package validators;
 
 import constants.ErrorCodeConstant;
+import domain.Menu;
+import domain.MenuType;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -41,11 +43,24 @@ public class ReservationMenuValidator {
     }
 
     /** 최대 갯수를 초과했을 경우 true, 아닐 경우 false 리턴 */
-    public static boolean isExceedCount(int maxNumber, String[] orderList) {
-        if(orderList.length > maxNumber){
-            return true;
+    public static boolean isExceedCount(int maxNumber, List<String> menuCount) {
+        int totalMenuCount = menuCount.stream()
+                .mapToInt(Integer::parseInt)
+                .sum();
+        return totalMenuCount > maxNumber;
+    }
+
+    public static boolean isOnlyDrinkMenu(List<String> menuList) {
+        int menuListCount = menuList.size();
+        int drinkCountInMenuList= 0;
+
+        for(String menu : menuList){
+            if(MenuType.DRINK.equals(Menu.getMenuType(menu))){
+                drinkCountInMenuList++;
+            }
         }
-        return false;
+
+        return menuListCount == drinkCountInMenuList;
     }
 
     /** List의 원소 중 중복이 있을 경우 true, 아닐 경우 false 리턴 */

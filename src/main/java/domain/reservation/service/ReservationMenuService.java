@@ -36,7 +36,6 @@ public class ReservationMenuService {
      * */
     public List<ReservationMenu> validateReservationMenu(String[] orderList) throws IllegalArgumentException {
         List<ReservationMenu> reservationMenuList = new ArrayList<>();
-
         if(reservationMenu.isDuplicatedMenu(orderList)){
             throw new IllegalArgumentException(ErrorCodeConstant.NOT_VALID_MENU_ERROR);
         }
@@ -47,7 +46,9 @@ public class ReservationMenuService {
             }
             reservationMenuList.add(validatedReservationMenu);
         }
-
+        if(reservationMenu.isOnlyDrinkMenu(orderList)){
+            throw new IllegalArgumentException(ErrorCodeConstant.IS_ONLY_DRINK_ERROR);
+        }
         return reservationMenuList;
     }
 

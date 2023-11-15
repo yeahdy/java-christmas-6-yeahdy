@@ -28,18 +28,28 @@ public class ReservationMenu {
     /** 주문한 메뉴가 20개를 초과한 경우 */
     public boolean isExceedMenuCount(String[] orderList){
         final int MAX_MENU_COUNT = 20;
-        return ReservationMenuValidator.isExceedCount(MAX_MENU_COUNT, orderList);
+        List<String> countList = selectMenuOrCount(orderList,1);
+        return ReservationMenuValidator.isExceedCount(MAX_MENU_COUNT, countList);
     }
 
+    /** 음료만 단독 주문한 경우  */
+    public boolean isOnlyDrinkMenu(String[] orderList){
+        List<String> menuList = selectMenuOrCount(orderList,0);
+        return ReservationMenuValidator.isOnlyDrinkMenu(menuList);
+    }
 
     /** 중복 메뉴를 입력한 경우 true 반환, 중복아닐 경우 false */
     public boolean isDuplicatedMenu(String[] orderList){
-        List<String> menuList = Arrays.stream(orderList)
-                .map(value -> value.split("-")[0])
-                .collect(Collectors.toList());
-
+        List<String> menuList = selectMenuOrCount(orderList,0);
         return ReservationMenuValidator.isDuplicatesList(menuList);
     }
+
+    private List<String> selectMenuOrCount(String[] orderList, int selectNumber){
+        return Arrays.stream(orderList)
+                .map(value -> value.split("-")[selectNumber])
+                .collect(Collectors.toList());
+    }
+
 
     /** 고객이 메뉴판에 없는 메뉴를 입력한 경우 */
     public ReservationMenu getValidatedReservationMenu(String order){
