@@ -15,7 +15,7 @@ public class WeekdayEvent {
         int desertCount = 0;
         for(ReservationMenu reservationMenu : menuList){
             if(reservationMenu.getMenu().isEventMenuType(MenuType.DESERT)){
-                desertCount++;
+                desertCount += reservationMenu.getCount();
             }
         }
 

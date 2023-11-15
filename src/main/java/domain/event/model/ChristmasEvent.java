@@ -6,7 +6,7 @@ public class ChristmasEvent{
         if(!isEventByDate(reservedDate)){
             return 0;
         }
-        return 1000 + (100 * reservedDate);
+        return 1100 + (100 * reservedDate);
     }
 
     private boolean isEventByDate(int reservedDate){
