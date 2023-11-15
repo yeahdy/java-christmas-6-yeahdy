@@ -1,6 +1,6 @@
 package domain.event.service;
 
-import domain.event.model.EventGenerator;
+import domain.event.model.UserEventGenerator;
 import domain.reservation.model.ReservationDate;
 import domain.reservation.model.ReservationMenu;
 import domain.user.UserReceipt;
@@ -12,7 +12,7 @@ public class EventService {
     private UserReservation userReservation;
     private UserReceipt userReceipt;
     private EventCalculatorService eventCalculatorService = new EventCalculatorService();
-    private EventGenerator eventGenerator = new EventGenerator();
+    private UserEventGenerator userEventGenerator = new UserEventGenerator();
 
     public UserReservation getUserReservation(ReservationDate reservationDate, List<ReservationMenu> menuList){
         int totalPrice = eventCalculatorService.isEventBenefit(menuList);
@@ -24,11 +24,11 @@ public class EventService {
     }
 
     public List<String> selectUserMenuList(List<ReservationMenu> userMenuList){
-        return eventGenerator.getUserMenuList(userMenuList);
+        return userEventGenerator.getUserMenuList(userMenuList);
     }
 
     public String selectMenuPrice(){
-        return eventGenerator.getMenuPrice(userReceipt.getPriceBeforeDiscount());
+        return userEventGenerator.getMenuPrice(userReceipt.getPriceBeforeDiscount());
     }
 
 }

@@ -6,7 +6,7 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-public class EventGenerator {
+public class UserEventGenerator {
 
     /** 주문 메뉴 */
     public List<String> getUserMenuList(List<ReservationMenu> reservationMenuList){
