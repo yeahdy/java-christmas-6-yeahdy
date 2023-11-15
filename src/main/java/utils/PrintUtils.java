@@ -17,4 +17,8 @@ public class PrintUtils {
         System.out.println(ErrorCodeConstant.ERROR + errorMessage);
     }
 
+    public static void replacePrintf(String message, String replaceMessage){
+        System.out.printf(message,replaceMessage);
+    }
+
 }
