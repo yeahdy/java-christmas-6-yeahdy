@@ -1,8 +1,6 @@
 package domain.event.service;
 
 import domain.event.model.EventDiscount;
-import domain.event.model.EventFacade;
-import domain.event.model.UserEventGenerator;
 import domain.reservation.model.ReservationDate;
 import domain.reservation.model.ReservationMenu;
 import domain.user.UserReceiptPriceInfo;
@@ -15,6 +13,7 @@ public class EventService {
 
     private UserReservation userReservation;
     private UserReceiptPriceInfo userReceiptPriceInfo;
+
     private EventCalculateGenerator eventCalculateGenerator = new EventCalculateGenerator();
     private UserEventGenerator userEventGenerator = new UserEventGenerator();
     private EventFacade eventFacade = new EventFacade();

@@ -1,6 +1,12 @@
-package domain.event.model;
+package domain.event.service;
 
 import domain.date.DayType;
+import domain.event.model.ChristmasEvent;
+import domain.event.model.EventDiscount;
+import domain.event.model.GiftEvent;
+import domain.event.model.SpecialEvent;
+import domain.event.model.WeekdayEvent;
+import domain.event.model.WeekendEvent;
 import domain.reservation.model.ReservationDate;
 import domain.reservation.model.ReservationMenu;
 import java.time.LocalDate;

@@ -1,6 +1,7 @@
-package domain.event.model;
+package domain.event.service;
 
 import constants.UserEventMessageConstant;
+import domain.event.model.EventDiscount;
 import domain.reservation.model.ReservationMenu;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
