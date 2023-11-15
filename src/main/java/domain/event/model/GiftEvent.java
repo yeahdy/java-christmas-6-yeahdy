@@ -5,10 +5,10 @@ public class GiftEvent {
     private final int discountPrice;
 
     public GiftEvent(int discountPrice) {
-        this.discountPrice = selectDiscountPrice(discountPrice);
+        this.discountPrice = discountPrice;
     }
 
-    private int selectDiscountPrice(int price){
+    public int selectDiscountPrice(int price){
         if(price < 120_000){
             return 0;
         }
