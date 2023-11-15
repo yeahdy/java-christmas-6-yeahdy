@@ -2,12 +2,6 @@ package domain.event.model;
 
 public class ChristmasEvent{
 
-    private final int discountPrice;
-
-    public ChristmasEvent(int discountPrice) {
-        this.discountPrice = discountPrice;
-    }
-
     public int selectDiscountPrice(int reservedDate){
         if(!isEventByDate(reservedDate)){
             return 0;

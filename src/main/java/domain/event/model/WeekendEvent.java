@@ -7,12 +7,6 @@ import java.util.List;
 
 public class WeekendEvent {
 
-    private final int discountPrice;
-
-    public WeekendEvent(int discountPrice) {
-        this.discountPrice = discountPrice;
-    }
-
     public int selectDiscountPrice(DayType dayType, List<ReservationMenu> menuList){
         if(DayType.isEventWeekDay(dayType)){
             return 0;
