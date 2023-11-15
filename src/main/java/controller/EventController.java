@@ -29,8 +29,7 @@ public class EventController {
         EventDiscount eventDiscount = eventService.getTotalEventDiscount();
         createGiftMenu(eventDiscount);
         createBenefitsList(eventDiscount);
-
-        outputView.printTotalBenefitsPrice();
+        createTotalBenefitsPrice(eventDiscount);
 
         outputView.printPriceAfterDiscount();
 
@@ -65,6 +64,13 @@ public class EventController {
         }
         PrintUtils.println("");
     }
+
+    private void createTotalBenefitsPrice(EventDiscount eventDiscount){
+        outputView.printTotalBenefitsPrice();
+        PrintUtils.println(eventService.selectTotalBenefitsPrice(eventDiscount));
+        PrintUtils.println("");
+    }
+
 
     public void createEventBadge(){
         outputView.printEventBadge();

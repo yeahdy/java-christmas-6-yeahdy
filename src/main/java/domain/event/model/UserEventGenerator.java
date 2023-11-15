@@ -28,7 +28,7 @@ public class UserEventGenerator {
     /**
      * 총혜택 금액
      */
-    public String getMenuPrice(int price) {
+    public String getValuePrice(int price) {
         String message = UserEventMessageConstant.MENU_PRICE;
         return message.replace("{price}", getCommaPrice(price));
     }

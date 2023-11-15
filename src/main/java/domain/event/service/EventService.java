@@ -20,7 +20,7 @@ public class EventService {
     private EventFacade eventFacade = new EventFacade();
 
     public UserReservation getUserReservation(ReservationDate reservationDate, List<ReservationMenu> menuList) {
-        int totalPrice = eventCalculateGenerator.isEventBenefit(menuList);
+        int totalPrice = eventCalculateGenerator.getTotalMenuPrice(menuList);
         userReceipt = new UserReceipt(totalPrice);
 
         boolean hasEventBenefit = 10000 < totalPrice;
@@ -33,11 +33,11 @@ public class EventService {
     }
 
     public String selectMenuPrice() {
-        return userEventGenerator.getMenuPrice(userReceipt.getPriceBeforeDiscount());
+        return userEventGenerator.getValuePrice(userReceipt.getPriceBeforeDiscount());
     }
 
     public EventDiscount getTotalEventDiscount() {
-        if(!userReservation.isHasEventBenefit()){
+        if (!userReservation.isHasEventBenefit()) {
             return null;
         }
 
@@ -62,5 +62,8 @@ public class EventService {
         return userEventGenerator.getBenefitsList(eventDiscount);
     }
 
-
+    public String selectTotalBenefitsPrice(EventDiscount eventDiscount) {
+        int totalBenefitsPrice = eventCalculateGenerator.getTotalBenefitsPrice(eventDiscount);
+        return "-" + userEventGenerator.getValuePrice(totalBenefitsPrice);
+    }
 }

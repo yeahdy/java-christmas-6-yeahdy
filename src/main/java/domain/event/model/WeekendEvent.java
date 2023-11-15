@@ -15,7 +15,7 @@ public class WeekendEvent {
         int mainCount = 0;
         for(ReservationMenu reservationMenu : menuList){
             if(reservationMenu.getMenu().isEventMenuType(MenuType.MAIN)){
-                mainCount++;
+                mainCount += reservationMenu.getCount();
             }
         }
 

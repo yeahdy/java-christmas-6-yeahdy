@@ -13,6 +13,15 @@ public class EventCalculator {
     }
 
     /** 총혜택 금액 */
+    public int getTotalBenefitsPrice(EventDiscount eventDiscount){
+        int totalBenefitsPrice = 0;
+        totalBenefitsPrice += eventDiscount.getChristmasPrice();
+        totalBenefitsPrice += eventDiscount.getWeekdayPrice();
+        totalBenefitsPrice += eventDiscount.getWeekendPrice();
+        totalBenefitsPrice += eventDiscount.getSpecialPrice();
+        totalBenefitsPrice += eventDiscount.getGiftPrice();
+        return totalBenefitsPrice;
+    }
 
     /** 할인 후 예상 결제 금액 */
 
