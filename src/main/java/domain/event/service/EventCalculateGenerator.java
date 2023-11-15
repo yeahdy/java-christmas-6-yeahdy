@@ -3,7 +3,7 @@ package domain.event.service;
 import domain.event.model.EventCalculator;
 import domain.event.model.EventDiscount;
 import domain.reservation.model.ReservationMenu;
-import domain.user.UserReceipt;
+import domain.user.UserReceiptPriceInfo;
 import java.util.List;
 
 public class EventCalculateGenerator {
@@ -22,8 +22,8 @@ public class EventCalculateGenerator {
         return eventCalculator.getTotalBenefitsPrice(eventDiscount);
     }
 
-    public int getPriceAfterDiscount(UserReceipt userReceipt, EventDiscount eventDiscount) {
-        return eventCalculator.getPriceAfterDiscount(userReceipt, eventDiscount.getGiftPrice());
+    public int getPriceAfterDiscount(UserReceiptPriceInfo userReceiptPriceInfo, EventDiscount eventDiscount) {
+        return eventCalculator.getPriceAfterDiscount(userReceiptPriceInfo, eventDiscount.getGiftPrice());
     }
 
 }

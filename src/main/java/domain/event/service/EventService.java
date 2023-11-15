@@ -5,7 +5,7 @@ import domain.event.model.EventFacade;
 import domain.event.model.UserEventGenerator;
 import domain.reservation.model.ReservationDate;
 import domain.reservation.model.ReservationMenu;
-import domain.user.UserReceipt;
+import domain.user.UserReceiptPriceInfo;
 import domain.user.UserReservation;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -14,14 +14,14 @@ import java.util.List;
 public class EventService {
 
     private UserReservation userReservation;
-    private UserReceipt userReceipt;
+    private UserReceiptPriceInfo userReceiptPriceInfo;
     private EventCalculateGenerator eventCalculateGenerator = new EventCalculateGenerator();
     private UserEventGenerator userEventGenerator = new UserEventGenerator();
     private EventFacade eventFacade = new EventFacade();
 
     public UserReservation getUserReservation(ReservationDate reservationDate, List<ReservationMenu> menuList) {
         int totalPrice = eventCalculateGenerator.getTotalMenuPrice(menuList);
-        userReceipt = new UserReceipt(totalPrice);
+        userReceiptPriceInfo = new UserReceiptPriceInfo(totalPrice);
 
         boolean hasEventBenefit = 10000 < totalPrice;
         userReservation = new UserReservation(reservationDate, menuList, hasEventBenefit);
@@ -33,7 +33,7 @@ public class EventService {
     }
 
     public String selectMenuPrice() {
-        return userEventGenerator.getValuePrice(userReceipt.getPriceBeforeDiscount());
+        return userEventGenerator.getValuePrice(userReceiptPriceInfo.getPriceBeforeDiscount());
     }
 
     public EventDiscount getTotalEventDiscount() {
@@ -44,7 +44,7 @@ public class EventService {
         return eventFacade.getTotalEventDiscount(
                 userReservation.getReservationDate(),
                 userReservation.getMenuList(),
-                userReceipt.getPriceBeforeDiscount());
+                userReceiptPriceInfo.getPriceBeforeDiscount());
     }
 
     public String selectGiftEventDiscountPrice(EventDiscount eventDiscount) {
@@ -67,16 +67,16 @@ public class EventService {
             return "없음";
         }
         int totalBenefitsPrice = eventCalculateGenerator.getTotalBenefitsPrice(eventDiscount);
-        userReceipt.setTotalBenefitsPrice(totalBenefitsPrice);
+        userReceiptPriceInfo.setTotalBenefitsPrice(totalBenefitsPrice);
         return "-" + userEventGenerator.getValuePrice(totalBenefitsPrice);
     }
 
     public String selectPriceAfterDiscount(EventDiscount eventDiscount) {
-        int priceBeforeDiscount = userReceipt.getPriceBeforeDiscount();
+        int priceBeforeDiscount = userReceiptPriceInfo.getPriceBeforeDiscount();
         if (eventDiscount == null) {
             return userEventGenerator.getValuePrice(priceBeforeDiscount);
         }
-        int priceAfterDiscount = eventCalculateGenerator.getPriceAfterDiscount(userReceipt, eventDiscount);
+        int priceAfterDiscount = eventCalculateGenerator.getPriceAfterDiscount(userReceiptPriceInfo, eventDiscount);
         return userEventGenerator.getValuePrice(priceAfterDiscount);
     }
 

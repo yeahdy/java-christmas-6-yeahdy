@@ -1,15 +1,11 @@
 package domain.user;
 
-import domain.event.model.EventDiscount;
-
-public class UserReceipt {
+public class UserReceiptPriceInfo {
 
     private final int priceBeforeDiscount;
-    private EventDiscount eventDiscount;
     private int totalBenefitsPrice;
-    private int priceAfterDiscount;
 
-    public UserReceipt(int priceBeforeDiscount) {
+    public UserReceiptPriceInfo(int priceBeforeDiscount) {
         this.priceBeforeDiscount = priceBeforeDiscount;
     }
 
