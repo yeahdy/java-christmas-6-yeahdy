@@ -24,4 +24,5 @@ public class UserReceipt {
     public int getTotalBenefitsPrice() {
         return totalBenefitsPrice;
     }
+
 }

@@ -1,6 +1,7 @@
 package domain.event.model;
 
 import domain.reservation.model.ReservationMenu;
+import domain.user.UserReceipt;
 
 public class EventCalculator {
 
@@ -21,5 +22,10 @@ public class EventCalculator {
     }
 
     /** 할인 후 예상 결제 금액 */
+    public int getPriceAfterDiscount(UserReceipt userReceipt, int giftPrice){
+        int totalEventPrice = userReceipt.getTotalBenefitsPrice() - giftPrice;
+        return userReceipt.getPriceBeforeDiscount() - totalEventPrice;
+    }
+
 
 }
