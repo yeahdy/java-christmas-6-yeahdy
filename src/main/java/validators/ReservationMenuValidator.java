@@ -40,13 +40,21 @@ public class ReservationMenuValidator {
         }
     }
 
+    /** 최대 갯수를 초과했을 경우 true, 아닐 경우 false 리턴 */
+    public static boolean isExceedCount(int maxNumber, String[] orderList) {
+        if(orderList.length > maxNumber){
+            return true;
+        }
+        return false;
+    }
+
     /** List의 원소 중 중복이 있을 경우 true, 아닐 경우 false 리턴 */
     public static boolean isDuplicatesList(List<String> orderList) {
         List<String> distinctNumbers = orderList.stream()
                 .distinct()
                 .collect(Collectors.toList());
 
-        return distinctNumbers.size() < orderList.size();
+        return distinctNumbers.size() != orderList.size();
     }
 
 }

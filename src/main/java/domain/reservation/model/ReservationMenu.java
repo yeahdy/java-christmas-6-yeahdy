@@ -9,7 +9,6 @@ import validators.ReservationMenuValidator;
 public class ReservationMenu {
 
     private Menu menu;
-
     private int count;
 
     public ReservationMenu(){}
@@ -25,6 +24,13 @@ public class ReservationMenu {
         String[] orderFormat = ReservationMenuValidator.validateOrderFormat(order);
         ReservationMenuValidator.validateOrderCount(orderFormat);
     }
+
+    /** 주문한 메뉴가 20개를 초과한 경우 */
+    public boolean isExceedMenuCount(String[] orderList){
+        final int MAX_MENU_COUNT = 20;
+        return ReservationMenuValidator.isExceedCount(MAX_MENU_COUNT, orderList);
+    }
+
 
     /** 중복 메뉴를 입력한 경우 true 반환, 중복아닐 경우 false */
     public boolean isDuplicatedMenu(String[] orderList){
