@@ -48,7 +48,7 @@ public class EventService {
     }
 
     public String selectGiftEventDiscountPrice(EventDiscount eventDiscount) {
-        if (eventDiscount == null) {
+        if (eventDiscount == null || eventDiscount.getGiftPrice() == 0) {
             return "없음";
         }
         final String gift = "샴페인";
