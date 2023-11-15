@@ -24,8 +24,7 @@ public class EventController {
         outputView.printCheckBenefit(String.valueOf(userReservation.getReservedDate()));
 
         createOrderMenu();
-
-        outputView.printPriceBeforeDiscount();
+        createPriceBeforeDiscount();
 
         outputView.printGiftMenu();
 
@@ -43,6 +42,12 @@ public class EventController {
         for(String userMenu : userMenuList){
             PrintUtils.println(userMenu);
         }
+        PrintUtils.println("");
+    }
+
+    private void createPriceBeforeDiscount(){
+        outputView.printPriceBeforeDiscount();
+        PrintUtils.println(eventService.selectMenuPrice());
         PrintUtils.println("");
     }
 

@@ -2,6 +2,7 @@ package domain.event.model;
 
 import constants.UserEventMessageConstant;
 import domain.reservation.model.ReservationMenu;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,6 +21,15 @@ public class EventGenerator {
         }
 
         return userOrderMenuList;
+    }
+
+    /** 총혜택 금액 */
+    public String getMenuPrice(int price){
+        DecimalFormat decimalFormat = new DecimalFormat("#,###");
+        String formattedNumber = decimalFormat.format(price);
+
+        String message = UserEventMessageConstant.MENU_PRICE;
+        return message.replace("{price}",String.valueOf(formattedNumber));
     }
 
     /** 증정 메뉴 */

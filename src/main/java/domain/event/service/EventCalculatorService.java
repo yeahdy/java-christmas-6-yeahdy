@@ -10,15 +10,14 @@ public class EventCalculatorService {
 
     private EventCalculator eventCalculator = new EventCalculator();
 
-    public boolean isEventBenefit(List<ReservationMenu> reservationMenuList){
+    public int isEventBenefit(List<ReservationMenu> reservationMenuList){
         List<Menu> menuList = new ArrayList<>();
 
         for(ReservationMenu reservationMenu : reservationMenuList){
             menuList.add(reservationMenu.getMenu());
         }
 
-        int totalPrice = eventCalculator.getTotalMenuPrice(menuList);
-        return 10000 < totalPrice;
+        return eventCalculator.getTotalMenuPrice(menuList);
     }
 
 }
