@@ -48,4 +48,7 @@ public enum Menu {
         return null;
     }
 
+    public int getPrice() {
+        return price;
+    }
 }

@@ -33,4 +33,7 @@ public class ReservationDate {
         return DayType.getDayTypeByLocalDate(reservationFullDate);
     }
 
+    public int getReservedDate() {
+        return reservedDate;
+    }
 }

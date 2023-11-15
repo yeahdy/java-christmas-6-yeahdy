@@ -65,4 +65,7 @@ public class ReservationMenu {
         return new ReservationMenu(menu,count);
     }
 
+    public Menu getMenu() {
+        return menu;
+    }
 }
