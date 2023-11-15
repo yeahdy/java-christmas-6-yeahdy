@@ -63,6 +63,9 @@ public class EventService {
     }
 
     public String selectTotalBenefitsPrice(EventDiscount eventDiscount) {
+        if (eventDiscount == null) {
+            return "없음";
+        }
         int totalBenefitsPrice = eventCalculateGenerator.getTotalBenefitsPrice(eventDiscount);
         return "-" + userEventGenerator.getValuePrice(totalBenefitsPrice);
     }
