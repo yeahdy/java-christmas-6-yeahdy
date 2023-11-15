@@ -7,12 +7,10 @@ import domain.reservation.model.ReservationMenu;
 import domain.user.UserReservation;
 import java.util.List;
 import utils.PrintUtils;
-import view.InputView;
 import view.OutputView;
 
 public class EventController {
 
-    private InputView inputView = new InputView();
     private OutputView outputView = new OutputView();
     private UserReservation userReservation;
     private EventService eventService = new EventService();
@@ -73,11 +71,6 @@ public class EventController {
         outputView.printPriceAfterDiscount();
         PrintUtils.println(eventService.selectPriceAfterDiscount(eventDiscount));
         PrintUtils.println("");
-    }
-
-
-    public void createEventBadge() {
-        outputView.printEventBadge();
     }
 
 }

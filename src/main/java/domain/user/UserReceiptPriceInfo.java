@@ -2,8 +2,8 @@ package domain.user;
 
 public class UserReceiptPriceInfo {
 
-    private final int priceBeforeDiscount;
-    private int totalBenefitsPrice;
+    private final int priceBeforeDiscount;  //할인 전 총주문 금액
+    private int totalBenefitsPrice; //총 혜택 금액
 
     public UserReceiptPriceInfo(int priceBeforeDiscount) {
         this.priceBeforeDiscount = priceBeforeDiscount;
