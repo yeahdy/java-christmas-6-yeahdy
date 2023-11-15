@@ -1,5 +1,6 @@
 package controller;
 
+import domain.event.model.EventDiscount;
 import domain.event.service.EventService;
 import domain.reservation.model.ReservationDate;
 import domain.reservation.model.ReservationMenu;
@@ -22,13 +23,12 @@ public class EventController {
 
     public void createEventList(){
         outputView.printCheckBenefit(String.valueOf(userReservation.getReservedDate()));
-
         createOrderMenu();
         createPriceBeforeDiscount();
 
-        outputView.printGiftMenu();
-
-        outputView.printBenefitsList();
+        EventDiscount eventDiscount = eventService.getTotalEventDiscount();
+        createGiftMenu(eventDiscount);
+        createBenefitsList(eventDiscount);
 
         outputView.printTotalBenefitsPrice();
 
@@ -48,6 +48,21 @@ public class EventController {
     private void createPriceBeforeDiscount(){
         outputView.printPriceBeforeDiscount();
         PrintUtils.println(eventService.selectMenuPrice());
+        PrintUtils.println("");
+    }
+
+    private void createGiftMenu(EventDiscount eventDiscount){
+        outputView.printGiftMenu();
+        PrintUtils.println(eventService.selectGiftEventDiscountPrice(eventDiscount));
+        PrintUtils.println("");
+    }
+
+    private void createBenefitsList(EventDiscount eventDiscount){
+        outputView.printBenefitsList();
+        List<String> benefitsList = eventService.selectBenefitsList(eventDiscount);
+        for(String benefit : benefitsList){
+            PrintUtils.println(benefit);
+        }
         PrintUtils.println("");
     }
 
