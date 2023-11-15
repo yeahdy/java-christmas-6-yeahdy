@@ -5,6 +5,7 @@ import domain.reservation.model.ReservationDate;
 import domain.reservation.model.ReservationMenu;
 import domain.user.UserReservation;
 import java.util.List;
+import utils.PrintUtils;
 import view.InputView;
 import view.OutputView;
 
@@ -21,6 +22,32 @@ public class EventController {
 
     public void createEventList(){
         outputView.printCheckBenefit(String.valueOf(userReservation.getReservedDate()));
+
+        createOrderMenu();
+
+        outputView.printPriceBeforeDiscount();
+
+        outputView.printGiftMenu();
+
+        outputView.printBenefitsList();
+
+        outputView.printTotalBenefitsPrice();
+
+        outputView.printPriceAfterDiscount();
+
+    }
+
+    private void createOrderMenu(){
+        outputView.printOrderMenu();
+        List<String> userMenuList = eventService.selectUserMenuList(userReservation.getMenuList());
+        for(String userMenu : userMenuList){
+            PrintUtils.println(userMenu);
+        }
+        PrintUtils.println("");
+    }
+
+    public void createEventBadge(){
+        outputView.printEventBadge();
     }
 
 }
