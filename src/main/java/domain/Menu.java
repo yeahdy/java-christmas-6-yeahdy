@@ -48,6 +48,10 @@ public enum Menu {
         return null;
     }
 
+    public String getFood() {
+        return food;
+    }
+
     public int getPrice() {
         return price;
     }

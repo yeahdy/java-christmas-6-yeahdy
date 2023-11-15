@@ -12,4 +12,8 @@ public class EventCalculator {
                 .sum();
     }
 
+    /** 총혜택 금액 */
+
+    /** 할인 후 예상 결제 금액 */
+
 }

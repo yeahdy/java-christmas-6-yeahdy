@@ -20,4 +20,7 @@ public class UserReservation {
         return reservationDate.getReservedDate();
     }
 
+    public List<ReservationMenu> getMenuList() {
+        return menuList;
+    }
 }
