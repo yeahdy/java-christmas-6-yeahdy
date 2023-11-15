@@ -25,4 +25,13 @@ public enum AnniversaryDate {
         return null;
     }
 
+    public static boolean isAnniversaryDay(LocalDate reservationFullDate){
+        for(AnniversaryDate anniversaryDate : values()){
+            if(reservationFullDate.equals(anniversaryDate.localDate)){
+                return true;
+            }
+        }
+        return false;
+    }
+
 }
