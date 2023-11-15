@@ -1,8 +1,7 @@
 package domain.event.model;
 
-public class ChristmasEvent implements Event{
+public class ChristmasEvent{
 
-    @Override
     public int selectEventResult(int reservedDate){
         if(!isEventByDate(reservedDate)){
             return 0;
