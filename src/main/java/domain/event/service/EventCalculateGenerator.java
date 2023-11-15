@@ -6,7 +6,7 @@ import domain.reservation.model.ReservationMenu;
 import java.util.ArrayList;
 import java.util.List;
 
-public class EventCalculatorService {
+public class EventCalculateGenerator {
 
     private EventCalculator eventCalculator = new EventCalculator();
 

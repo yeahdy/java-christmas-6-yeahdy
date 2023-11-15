@@ -15,12 +15,12 @@ public class EventService {
 
     private UserReservation userReservation;
     private UserReceipt userReceipt;
-    private EventCalculatorService eventCalculatorService = new EventCalculatorService();
+    private EventCalculateGenerator eventCalculateGenerator = new EventCalculateGenerator();
     private UserEventGenerator userEventGenerator = new UserEventGenerator();
     private EventFacade eventFacade = new EventFacade();
 
     public UserReservation getUserReservation(ReservationDate reservationDate, List<ReservationMenu> menuList) {
-        int totalPrice = eventCalculatorService.isEventBenefit(menuList);
+        int totalPrice = eventCalculateGenerator.isEventBenefit(menuList);
         userReceipt = new UserReceipt(totalPrice);
 
         boolean hasEventBenefit = 10000 < totalPrice;
