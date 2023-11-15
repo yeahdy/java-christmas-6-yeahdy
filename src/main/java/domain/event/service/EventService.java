@@ -80,4 +80,8 @@ public class EventService {
         return userEventGenerator.getValuePrice(priceAfterDiscount);
     }
 
+    public UserReceiptPriceInfo selectUserReservation(){
+        return userReceiptPriceInfo;
+    }
+
 }

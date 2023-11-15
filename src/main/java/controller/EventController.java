@@ -4,6 +4,7 @@ import domain.event.model.EventDiscount;
 import domain.event.service.EventService;
 import domain.reservation.model.ReservationDate;
 import domain.reservation.model.ReservationMenu;
+import domain.user.UserReceiptPriceInfo;
 import domain.user.UserReservation;
 import java.util.List;
 import utils.PrintUtils;
@@ -71,6 +72,10 @@ public class EventController {
         outputView.printPriceAfterDiscount();
         PrintUtils.println(eventService.selectPriceAfterDiscount(eventDiscount));
         PrintUtils.println("");
+    }
+
+    public UserReceiptPriceInfo createUserReceiptPriceInfo() {
+        return eventService.selectUserReservation();
     }
 
 }
