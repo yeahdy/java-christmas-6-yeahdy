@@ -16,4 +16,12 @@ public class UserReceipt {
     public int getPriceBeforeDiscount() {
         return priceBeforeDiscount;
     }
+
+    public void setTotalBenefitsPrice(int totalBenefitsPrice) {
+        this.totalBenefitsPrice = totalBenefitsPrice;
+    }
+
+    public int getTotalBenefitsPrice() {
+        return totalBenefitsPrice;
+    }
 }

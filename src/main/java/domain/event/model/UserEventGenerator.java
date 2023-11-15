@@ -69,6 +69,13 @@ public class UserEventGenerator {
             benefitsList.add(message);
         }
 
+        if (eventDiscount.getSpecialPrice() != 0) {
+            String message = UserEventMessageConstant.BENEFITS_PRICE_LIST
+                    .replace("{event}", UserEventMessageConstant.SPECIAL_DISCOUNT);
+            message = message.replace("{price}", getCommaPrice(eventDiscount.getSpecialPrice()));
+            benefitsList.add(message);
+        }
+
         if (eventDiscount.getGiftPrice() != 0) {
             String message = UserEventMessageConstant.BENEFITS_PRICE_LIST
                     .replace("{event}", UserEventMessageConstant.GIFT_DISCOUNT);

@@ -67,6 +67,17 @@ public class EventService {
             return "없음";
         }
         int totalBenefitsPrice = eventCalculateGenerator.getTotalBenefitsPrice(eventDiscount);
+        userReceipt.setTotalBenefitsPrice(totalBenefitsPrice);
         return "-" + userEventGenerator.getValuePrice(totalBenefitsPrice);
     }
+
+    public String selectPriceAfterDiscount(EventDiscount eventDiscount) {
+        int priceBeforeDiscount = userReceipt.getPriceBeforeDiscount();
+        if (eventDiscount == null) {
+            return userEventGenerator.getValuePrice(priceBeforeDiscount);
+        }
+        int priceAfterDiscount = priceBeforeDiscount - userReceipt.getTotalBenefitsPrice();
+        return userEventGenerator.getValuePrice(priceAfterDiscount);
+    }
+
 }

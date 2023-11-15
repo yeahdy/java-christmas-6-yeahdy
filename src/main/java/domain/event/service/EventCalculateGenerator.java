@@ -1,10 +1,8 @@
 package domain.event.service;
 
-import domain.Menu;
 import domain.event.model.EventCalculator;
 import domain.event.model.EventDiscount;
 import domain.reservation.model.ReservationMenu;
-import java.util.ArrayList;
 import java.util.List;
 
 public class EventCalculateGenerator {
@@ -12,13 +10,11 @@ public class EventCalculateGenerator {
     private EventCalculator eventCalculator = new EventCalculator();
 
     public int getTotalMenuPrice(List<ReservationMenu> reservationMenuList){
-        List<Menu> menuList = new ArrayList<>();
-
+        int totalMenuPrice = 0;
         for(ReservationMenu reservationMenu : reservationMenuList){
-            menuList.add(reservationMenu.getMenu());
+            totalMenuPrice += eventCalculator.getTotalMenuPrice(reservationMenu);
         }
-
-        return eventCalculator.getTotalMenuPrice(menuList);
+        return totalMenuPrice;
     }
 
     public int getTotalBenefitsPrice(EventDiscount eventDiscount){

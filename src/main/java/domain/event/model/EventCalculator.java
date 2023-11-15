@@ -1,15 +1,12 @@
 package domain.event.model;
 
-import domain.Menu;
-import java.util.List;
+import domain.reservation.model.ReservationMenu;
 
 public class EventCalculator {
 
     /** 할인 전 총주문 금액 */
-    public int getTotalMenuPrice(List<Menu> menuList){
-        return menuList.stream()
-                .mapToInt(Menu::getPrice)
-                .sum();
+    public int getTotalMenuPrice(ReservationMenu reservationMenu){
+        return reservationMenu.getMenu().getPrice() * reservationMenu.getCount();
     }
 
     /** 총혜택 금액 */
