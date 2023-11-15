@@ -25,5 +25,11 @@ public enum DayType {
         throw new IllegalArgumentException(ErrorCodeConstant.NOT_VALID_DATE_ERROR);
     }
 
+    public static boolean isEventWeekDay(DayType dayType){
+        if(dayType.equals(FRIDAY) || dayType.equals(SATURDAY)){
+            return false;
+        }
+        return true;
+    }
 
 }

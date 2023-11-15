@@ -48,6 +48,14 @@ public enum Menu {
         return null;
     }
 
+
+    public boolean isEventMenuType(MenuType menuType){
+        if(this.menuType.equals(menuType)){
+            return true;
+        }
+        return false;
+    }
+
     public String getFood() {
         return food;
     }
