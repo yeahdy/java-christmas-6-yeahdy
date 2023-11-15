@@ -11,10 +11,10 @@ public class ChristmasEventApplication {
     private ReservationController reservationController = new ReservationController();
     private EventController eventController = new EventController();
 
-    public void run(){
+    public void run() {
         ReservationDate reservationDate = reservationController.createReservationDate();
         List<ReservationMenu> reservationMenuList = reservationController.createReservationMenu();
-        eventController.createUserReservation(reservationDate,reservationMenuList);
+        eventController.createUserReservation(reservationDate, reservationMenuList);
         eventController.createEventList();
     }
 

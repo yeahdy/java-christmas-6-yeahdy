@@ -76,7 +76,7 @@ public class EventService {
         if (eventDiscount == null) {
             return userEventGenerator.getValuePrice(priceBeforeDiscount);
         }
-        int priceAfterDiscount = eventCalculateGenerator.getPriceAfterDiscount(userReceipt,eventDiscount);
+        int priceAfterDiscount = eventCalculateGenerator.getPriceAfterDiscount(userReceipt, eventDiscount);
         return userEventGenerator.getValuePrice(priceAfterDiscount);
     }
 

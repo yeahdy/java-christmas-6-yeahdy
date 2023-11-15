@@ -14,27 +14,27 @@ public class ReservationController {
     private OutputView outputView = new OutputView();
     private ReservationMenuService reservationMenuService = new ReservationMenuService();
 
-    public ReservationDate createReservationDate(){
+    public ReservationDate createReservationDate() {
         outputView.printGreeting();
-        while (true){
-            try{
+        while (true) {
+            try {
                 int date = inputView.readDate();
                 return new ReservationDate(date);
-            }catch (IllegalArgumentException iae){
+            } catch (IllegalArgumentException iae) {
                 PrintUtils.errorPrint(iae.getMessage());
             }
         }
     }
 
 
-    public List<ReservationMenu> createReservationMenu(){
-        while (true){
-            try{
+    public List<ReservationMenu> createReservationMenu() {
+        while (true) {
+            try {
                 String order = inputView.readOrder();
                 String[] orderList = reservationMenuService.validateOrderList(order);
 
                 return reservationMenuService.validateReservationMenu(orderList);
-            }catch (IllegalArgumentException iae){
+            } catch (IllegalArgumentException iae) {
                 PrintUtils.errorPrint(iae.getMessage());
             }
         } //while

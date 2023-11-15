@@ -9,7 +9,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 public class ReservationDateValidatorTest {
 
     @ParameterizedTest
-    @ValueSource(strings = {" ","","가나","23가나다","!@"})
+    @ValueSource(strings = {" ", "", "가나", "23가나다", "!@"})
     @DisplayName("잘못된 날짜 입력 시 예외 메세지 검증")
     void verify_date_error_message_test(final String characters) {
         //when
@@ -24,7 +24,7 @@ public class ReservationDateValidatorTest {
     }
 
     @ParameterizedTest
-    @ValueSource(ints = {0,100,32})
+    @ValueSource(ints = {0, 100, 32})
     @DisplayName("입력한 날짜가 1~31 사이가 아닐 경우 예외 발생")
     void verify_between_date_error_message_test(final int number) {
         //when

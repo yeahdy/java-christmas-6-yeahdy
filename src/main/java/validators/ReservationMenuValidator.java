@@ -9,16 +9,18 @@ import java.util.stream.Collectors;
 public class ReservationMenuValidator {
     public static final int MIN_ORDER_COUNT = 1;
 
-    public static String validateString(String order){
-        if(order.isBlank()){
+    public static String validateString(String order) {
+        if (order.isBlank()) {
             throw new IllegalArgumentException(ErrorCodeConstant.NOT_VALID_MENU_ERROR);
         }
         return order;
     }
 
 
-    /** "음식이름-수량" 형식이 아닐 경우 유효성 검사 실패 */
-    public static String[] validateOrderFormat(String order){
+    /**
+     * "음식이름-수량" 형식이 아닐 경우 유효성 검사 실패
+     */
+    public static String[] validateOrderFormat(String order) {
         final String DELIMITER = "-";
         String[] orderFormat = order.split(DELIMITER);
 
@@ -28,12 +30,14 @@ public class ReservationMenuValidator {
         return orderFormat;
     }
 
-    /** 수량이 숫자가 아니거나, 수량이 1 미만일 경우 유효성 검사 실패 */
-    public static void validateOrderCount(String[] orderFormat){
+    /**
+     * 수량이 숫자가 아니거나, 수량이 1 미만일 경우 유효성 검사 실패
+     */
+    public static void validateOrderCount(String[] orderFormat) {
         int orderCount;
-        try{
+        try {
             orderCount = Integer.parseInt(orderFormat[1]);
-        }catch (NumberFormatException efe){
+        } catch (NumberFormatException efe) {
             throw new IllegalArgumentException(ErrorCodeConstant.NOT_VALID_MENU_ERROR);
         }
 
@@ -42,7 +46,9 @@ public class ReservationMenuValidator {
         }
     }
 
-    /** 최대 갯수를 초과했을 경우 true, 아닐 경우 false 리턴 */
+    /**
+     * 최대 갯수를 초과했을 경우 true, 아닐 경우 false 리턴
+     */
     public static boolean isExceedCount(int maxNumber, List<String> menuCount) {
         int totalMenuCount = menuCount.stream()
                 .mapToInt(Integer::parseInt)
@@ -52,10 +58,10 @@ public class ReservationMenuValidator {
 
     public static boolean isOnlyDrinkMenu(List<String> menuList) {
         int menuListCount = menuList.size();
-        int drinkCountInMenuList= 0;
+        int drinkCountInMenuList = 0;
 
-        for(String menu : menuList){
-            if(MenuType.DRINK.equals(Menu.getMenuType(menu))){
+        for (String menu : menuList) {
+            if (MenuType.DRINK.equals(Menu.getMenuType(menu))) {
                 drinkCountInMenuList++;
             }
         }
@@ -63,7 +69,9 @@ public class ReservationMenuValidator {
         return menuListCount == drinkCountInMenuList;
     }
 
-    /** List의 원소 중 중복이 있을 경우 true, 아닐 경우 false 리턴 */
+    /**
+     * List의 원소 중 중복이 있을 경우 true, 아닐 경우 false 리턴
+     */
     public static boolean isDuplicatesList(List<String> orderList) {
         List<String> distinctNumbers = orderList.stream()
                 .distinct()

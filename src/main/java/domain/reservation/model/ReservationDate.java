@@ -12,7 +12,7 @@ public class ReservationDate {
     private final int reservedDate;   //예약일
     private final DayType day; //요일
 
-    public ReservationDate(int reservedDate){
+    public ReservationDate(int reservedDate) {
         ReservationDateValidator.validateBetweenDate(reservedDate);
 
         this.reservedDate = reservedDate;
@@ -20,13 +20,14 @@ public class ReservationDate {
         this.day = createDay(this.reservationFullDate);
     }
 
-    public LocalDate createReservationFullDate(int reservedDate){
+    public LocalDate createReservationFullDate(int reservedDate) {
         return DateUtils.getLocalDateByNumber(reservedDate);
     }
 
-    public DayType createDay(LocalDate reservationFullDate){
-        DayType dayType = AnniversaryDate.getAnniversaryDayType(reservationFullDate);;
-        if(dayType != null){
+    public DayType createDay(LocalDate reservationFullDate) {
+        DayType dayType = AnniversaryDate.getAnniversaryDayType(reservationFullDate);
+        ;
+        if (dayType != null) {
             return dayType;
         }
 

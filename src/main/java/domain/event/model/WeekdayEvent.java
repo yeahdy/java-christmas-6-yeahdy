@@ -7,14 +7,14 @@ import java.util.List;
 
 public class WeekdayEvent {
 
-    public int selectDiscountPrice(DayType dayType, List<ReservationMenu> menuList){
-        if(!DayType.isEventWeekDay(dayType)){
+    public int selectDiscountPrice(DayType dayType, List<ReservationMenu> menuList) {
+        if (!DayType.isEventWeekDay(dayType)) {
             return 0;
         }
 
         int desertCount = 0;
-        for(ReservationMenu reservationMenu : menuList){
-            if(reservationMenu.getMenu().isEventMenuType(MenuType.DESERT)){
+        for (ReservationMenu reservationMenu : menuList) {
+            if (reservationMenu.getMenu().isEventMenuType(MenuType.DESERT)) {
                 desertCount += reservationMenu.getCount();
             }
         }
