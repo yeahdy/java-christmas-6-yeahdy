@@ -4,7 +4,7 @@ import domain.event.model.EventDiscount;
 import domain.event.service.EventService;
 import domain.reservation.model.ReservationDate;
 import domain.reservation.model.ReservationMenu;
-import domain.user.UserReceiptPriceInfo;
+import dto.UserPriceDto;
 import domain.user.UserReservation;
 import java.util.List;
 import utils.PrintUtils;
@@ -74,7 +74,7 @@ public class EventController {
         PrintUtils.println("");
     }
 
-    public UserReceiptPriceInfo createUserReceiptPriceInfo() {
+    public UserPriceDto createUserReceiptPriceInfo() {
         return eventService.selectUserReservation();
     }
 

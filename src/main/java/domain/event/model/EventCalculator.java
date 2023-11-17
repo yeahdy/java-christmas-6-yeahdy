@@ -1,7 +1,7 @@
 package domain.event.model;
 
 import domain.reservation.model.ReservationMenu;
-import domain.user.UserReceiptPriceInfo;
+import dto.UserPriceDto;
 
 public class EventCalculator {
 
@@ -28,9 +28,9 @@ public class EventCalculator {
     /**
      * 할인 후 예상 결제 금액
      */
-    public int getPriceAfterDiscount(UserReceiptPriceInfo userReceiptPriceInfo, int giftPrice) {
-        int totalEventPrice = userReceiptPriceInfo.getTotalBenefitsPrice() - giftPrice;
-        return userReceiptPriceInfo.getPriceBeforeDiscount() - totalEventPrice;
+    public int getPriceAfterDiscount(UserPriceDto userPriceDto, int giftPrice) {
+        int totalEventPrice = userPriceDto.getTotalBenefitsPrice() - giftPrice;
+        return userPriceDto.getPriceBeforeDiscount() - totalEventPrice;
     }
 
 

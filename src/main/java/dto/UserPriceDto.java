@@ -1,11 +1,11 @@
-package domain.user;
+package dto;
 
-public class UserReceiptPriceInfo {
+public class UserPriceDto {
 
     private final int priceBeforeDiscount;  //할인 전 총주문 금액
     private int totalBenefitsPrice; //총 혜택 금액
 
-    public UserReceiptPriceInfo(int priceBeforeDiscount) {
+    public UserPriceDto(int priceBeforeDiscount) {
         this.priceBeforeDiscount = priceBeforeDiscount;
     }
 

@@ -3,7 +3,7 @@ package domain.event.service;
 import domain.event.model.EventDiscount;
 import domain.reservation.model.ReservationDate;
 import domain.reservation.model.ReservationMenu;
-import domain.user.UserReceiptPriceInfo;
+import dto.UserPriceDto;
 import domain.user.UserReservation;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -12,7 +12,7 @@ import java.util.List;
 public class EventService {
 
     private UserReservation userReservation;
-    private UserReceiptPriceInfo userReceiptPriceInfo;
+    private UserPriceDto userPriceDto;
 
     private EventCalculateGenerator eventCalculateGenerator = new EventCalculateGenerator();
     private UserEventGenerator userEventGenerator = new UserEventGenerator();
@@ -20,7 +20,7 @@ public class EventService {
 
     public UserReservation getUserReservation(ReservationDate reservationDate, List<ReservationMenu> menuList) {
         int totalPrice = eventCalculateGenerator.getTotalMenuPrice(menuList);
-        userReceiptPriceInfo = new UserReceiptPriceInfo(totalPrice);
+        userPriceDto = new UserPriceDto(totalPrice);
 
         boolean hasEventBenefit = 10000 < totalPrice;
         userReservation = new UserReservation(reservationDate, menuList, hasEventBenefit);
@@ -32,7 +32,7 @@ public class EventService {
     }
 
     public String selectMenuPrice() {
-        return userEventGenerator.getValuePrice(userReceiptPriceInfo.getPriceBeforeDiscount());
+        return userEventGenerator.getValuePrice(userPriceDto.getPriceBeforeDiscount());
     }
 
     public EventDiscount getTotalEventDiscount() {
@@ -43,7 +43,7 @@ public class EventService {
         return eventFacade.getTotalEventDiscount(
                 userReservation.getReservationDate(),
                 userReservation.getMenuList(),
-                userReceiptPriceInfo.getPriceBeforeDiscount());
+                userPriceDto.getPriceBeforeDiscount());
     }
 
     public String selectGiftEventDiscountPrice(EventDiscount eventDiscount) {
@@ -66,21 +66,21 @@ public class EventService {
             return "없음";
         }
         int totalBenefitsPrice = eventCalculateGenerator.getTotalBenefitsPrice(eventDiscount);
-        userReceiptPriceInfo.setTotalBenefitsPrice(totalBenefitsPrice);
+        userPriceDto.setTotalBenefitsPrice(totalBenefitsPrice);
         return "-" + userEventGenerator.getValuePrice(totalBenefitsPrice);
     }
 
     public String selectPriceAfterDiscount(EventDiscount eventDiscount) {
-        int priceBeforeDiscount = userReceiptPriceInfo.getPriceBeforeDiscount();
+        int priceBeforeDiscount = userPriceDto.getPriceBeforeDiscount();
         if (eventDiscount == null) {
             return userEventGenerator.getValuePrice(priceBeforeDiscount);
         }
-        int priceAfterDiscount = eventCalculateGenerator.getPriceAfterDiscount(userReceiptPriceInfo, eventDiscount);
+        int priceAfterDiscount = eventCalculateGenerator.getPriceAfterDiscount(userPriceDto, eventDiscount);
         return userEventGenerator.getValuePrice(priceAfterDiscount);
     }
 
-    public UserReceiptPriceInfo selectUserReservation(){
-        return userReceiptPriceInfo;
+    public UserPriceDto selectUserReservation(){
+        return userPriceDto;
     }
 
 }
