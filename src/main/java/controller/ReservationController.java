@@ -2,6 +2,8 @@ package controller;
 
 import domain.reservation.model.ReservationDate;
 import domain.reservation.model.ReservationMenu;
+import domain.user.model.UserReservation;
+import domain.user.service.UserReservationService;
 import java.util.List;
 import domain.reservation.service.ReservationMenuService;
 import utils.PrintUtils;
@@ -12,7 +14,21 @@ public class ReservationController {
 
     private InputView inputView = new InputView();
     private OutputView outputView = new OutputView();
-    private ReservationMenuService reservationMenuService = new ReservationMenuService();
+    private ReservationMenuService reservationMenuService;
+    private UserReservationService userReservationService;
+    private UserReservation userReservation;
+
+    public ReservationController(ReservationMenuService reservationMenuService, UserReservationService userReservationService){
+        this.reservationMenuService = reservationMenuService;
+        this.userReservationService = userReservationService;
+    }
+
+    public void createUserReservation() {
+        ReservationDate reservationDate =createReservationDate();
+        List<ReservationMenu> menuList = createReservationMenu();
+        userReservation = userReservationService.getUserReservation(reservationDate, menuList);
+        selectUserReservation();
+    }
 
     public ReservationDate createReservationDate() {
         outputView.printGreeting();
@@ -38,6 +54,16 @@ public class ReservationController {
                 PrintUtils.errorPrint(iae.getMessage());
             }
         } //while
+    }
+
+    private void selectUserReservation() {
+        outputView.printCheckBenefit(String.valueOf(userReservation.getReservedDate()));
+        outputView.printOrderMenu();
+        List<String> userMenuList = userReservationService.selectUserMenuList(userReservation.getMenuList());
+        for (String userMenu : userMenuList) {
+            PrintUtils.println(userMenu);
+        }
+        PrintUtils.println("");
     }
 
 }
