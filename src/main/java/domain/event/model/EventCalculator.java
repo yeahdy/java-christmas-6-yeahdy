@@ -1,7 +1,7 @@
 package domain.event.model;
 
 import domain.reservation.model.ReservationMenu;
-import dto.UserPriceDto;
+import domain.user.dto.UserPriceDto;
 
 public class EventCalculator {
 

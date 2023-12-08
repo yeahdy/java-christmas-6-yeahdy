@@ -3,7 +3,7 @@ package domain.event.service;
 import domain.event.model.EventCalculator;
 import domain.event.model.EventDiscount;
 import domain.reservation.model.ReservationMenu;
-import dto.UserPriceDto;
+import domain.user.dto.UserPriceDto;
 import java.util.List;
 
 public class EventCalculateGenerator {

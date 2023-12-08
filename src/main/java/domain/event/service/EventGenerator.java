@@ -7,7 +7,7 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UserEventGenerator {
+public class EventGenerator {
 
     /**
      * 주문 메뉴
