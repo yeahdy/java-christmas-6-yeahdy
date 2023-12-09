@@ -1,4 +1,4 @@
-package domain.user;
+package domain.user.model;
 
 import domain.reservation.model.ReservationDate;
 import domain.reservation.model.ReservationMenu;
@@ -16,19 +16,4 @@ public class UserReservation {
         this.hasEventBenefit = hasEventBenefit;
     }
 
-    public ReservationDate getReservationDate() {
-        return reservationDate;
-    }
-
-    public int getReservedDate() {
-        return reservationDate.getReservedDate();
-    }
-
-    public List<ReservationMenu> getMenuList() {
-        return menuList;
-    }
-
-    public boolean isHasEventBenefit() {
-        return hasEventBenefit;
-    }
 }

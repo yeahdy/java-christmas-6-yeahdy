@@ -16,6 +16,10 @@ public class UserReservationService {
     private EventCalculateGenerator eventCalculateGenerator = new EventCalculateGenerator();
     private EventGenerator eventGenerator = new EventGenerator();
 
+    public String getUserReservedDate(ReservationDate reservationDate){
+        return String.valueOf(reservationDate.getReservedDate());
+    }
+
     public UserReservation getUserReservation(ReservationDate reservationDate, List<ReservationMenu> menuList) {
         int totalPrice = eventCalculateGenerator.getTotalMenuPrice(menuList);
         userPriceDto = new UserPriceDto(totalPrice);
