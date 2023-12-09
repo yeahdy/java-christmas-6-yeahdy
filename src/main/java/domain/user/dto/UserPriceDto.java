@@ -1,4 +1,4 @@
-package dto;
+package domain.user.dto;
 
 public class UserPriceDto {
 
