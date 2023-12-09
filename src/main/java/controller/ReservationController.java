@@ -16,18 +16,18 @@ public class ReservationController {
     private OutputView outputView = new OutputView();
     private ReservationMenuService reservationMenuService;
     private UserReservationService userReservationService;
-    private UserReservation userReservation;
 
-    public ReservationController(ReservationMenuService reservationMenuService, UserReservationService userReservationService){
+    public ReservationController(ReservationMenuService reservationMenuService,
+                                 UserReservationService userReservationService) {
         this.reservationMenuService = reservationMenuService;
         this.userReservationService = userReservationService;
     }
 
     public void createUserReservation() {
-        ReservationDate reservationDate =createReservationDate();
+        ReservationDate reservationDate = createReservationDate();
         List<ReservationMenu> menuList = createReservationMenu();
-        userReservation = userReservationService.getUserReservation(reservationDate, menuList);
-        selectUserReservation();
+        UserReservation userReservation = userReservationService.getUserReservation(reservationDate, menuList);
+        selectUserReservation(userReservation);
     }
 
     public ReservationDate createReservationDate() {
@@ -56,7 +56,7 @@ public class ReservationController {
         } //while
     }
 
-    private void selectUserReservation() {
+    private void selectUserReservation(UserReservation userReservation) {
         outputView.printCheckBenefit(String.valueOf(userReservation.getReservedDate()));
         outputView.printOrderMenu();
         List<String> userMenuList = userReservationService.selectUserMenuList(userReservation.getMenuList());

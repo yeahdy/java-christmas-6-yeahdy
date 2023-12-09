@@ -4,10 +4,13 @@ import constants.ErrorCodeConstant;
 import domain.reservation.model.ReservationMenu;
 import java.util.ArrayList;
 import java.util.List;
+import validators.ReservationMenuValidator;
 
 public class ReservationMenuService {
-
-    private ReservationMenu reservationMenu = new ReservationMenu();
+    private ReservationMenuValidator reservationMenuValidator;
+    public ReservationMenuService(){
+        reservationMenuValidator = new ReservationMenuValidator();
+    }
 
     /**
      * 사용자 메뉴 입력 유효성 검사 - 공백이 있는지 - 입력 형식이 올바른지 - 20개까지 주문 했는지
@@ -19,30 +22,29 @@ public class ReservationMenuService {
         String[] orderList = orders.split(",");
 
         for (String order : orderList) {
-            reservationMenu.validateOrder(order);
+            reservationMenuValidator.validateOrder(order);
         }
-        if (reservationMenu.isExceedMenuCount(orderList)) {
+        if (reservationMenuValidator.isExceedMenuCount(orderList)) {
             throw new IllegalArgumentException(ErrorCodeConstant.EXCEED_MENU_COUNT_ERROR);
         }
         return orderList;
     }
 
-    /**
-     * 예약한 메뉴 유효성 검사 - 음료만 단독 주문 하지 않았는지 - 중복된 메뉴는 없는지 - 메뉴에 있는 음식만 주문 했는지
-     */
+
+    /** 예약한 메뉴 유효성 검사 - 음료만 단독 주문 하지 않았는지 - 중복된 메뉴는 없는지 - 메뉴에 있는 음식만 주문 했는지 */
     public List<ReservationMenu> validateReservationMenu(String[] orderList) throws IllegalArgumentException {
         List<ReservationMenu> reservationMenuList = new ArrayList<>();
-        if (reservationMenu.isDuplicatedMenu(orderList)) {
+        if (reservationMenuValidator.isDuplicatedMenu(orderList)) {
             throw new IllegalArgumentException(ErrorCodeConstant.NOT_VALID_MENU_ERROR);
         }
         for (String order : orderList) {
-            ReservationMenu validatedReservationMenu = reservationMenu.getValidatedReservationMenu(order);
+            ReservationMenu validatedReservationMenu = reservationMenuValidator.getValidatedReservationMenu(order);
             if (validatedReservationMenu == null) {
                 throw new IllegalArgumentException(ErrorCodeConstant.NOT_VALID_MENU_ERROR);
             }
             reservationMenuList.add(validatedReservationMenu);
         }
-        if (reservationMenu.isOnlyDrinkMenu(orderList)) {
+        if (reservationMenuValidator.isOnlyDrinkMenu(orderList)) {
             throw new IllegalArgumentException(ErrorCodeConstant.IS_ONLY_DRINK_ERROR);
         }
         return reservationMenuList;
