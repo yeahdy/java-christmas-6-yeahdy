@@ -1,15 +1,21 @@
-package domain.event.model;
+package domain.event.service;
 
+import domain.event.model.EventDiscount;
 import domain.reservation.model.ReservationMenu;
 import domain.user.dto.UserPriceDto;
+import java.util.List;
 
 public class EventCalculator {
 
     /**
      * 할인 전 총주문 금액
      */
-    public int getTotalMenuPrice(ReservationMenu reservationMenu) {
-        return reservationMenu.getMenu().getPrice() * reservationMenu.getCount();
+    public int getTotalMenuPrice(List<ReservationMenu> reservationMenuList) {
+        int totalMenuPrice = 0;
+        for (ReservationMenu reservationMenu : reservationMenuList) {
+            totalMenuPrice += reservationMenu.getMenu().getPrice() * reservationMenu.getCount();
+        }
+        return totalMenuPrice;
     }
 
     /**
@@ -32,6 +38,5 @@ public class EventCalculator {
         int totalEventPrice = userPriceDto.getTotalBenefitsPrice() - giftPrice;
         return userPriceDto.getPriceBeforeDiscount() - totalEventPrice;
     }
-
 
 }

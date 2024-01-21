@@ -20,13 +20,11 @@ public class EventFacade {
     private SpecialEvent specialEvent = new SpecialEvent();
     private GiftEvent giftEvent = new GiftEvent();
 
-    public EventDiscount getTotalEventDiscount(ReservationDate reservationDate, List<ReservationMenu> menuList,
-                                               int priceBeforeDiscount) {
+    public EventDiscount getTotalEventDiscount(ReservationDate reservationDate, List<ReservationMenu> menuList, int priceBeforeDiscount) {
         int christmasPrice = getChristmasEventDiscountPrice(reservationDate.getReservedDate());
         int weekdayPrice = getWeekdayEventDiscountPrice(reservationDate.getDay(), menuList);
         int weekendPrice = getWeekendEventDiscountPrice(reservationDate.getDay(), menuList);
-        int specialPrice = getSpecialEventDiscountPrice(reservationDate.getDay(),
-                reservationDate.getReservationFullDate());
+        int specialPrice = getSpecialEventDiscountPrice(reservationDate.getDay(), reservationDate.getReservationFullDate());
         int giftPrice = getGiftEventDiscountPrice(priceBeforeDiscount);
 
         return new EventDiscount(christmasPrice, weekdayPrice, weekendPrice, specialPrice, giftPrice);
