@@ -2,49 +2,47 @@ package controller;
 
 import domain.event.model.EventDiscount;
 import domain.event.service.EventService;
-import domain.reservation.model.ReservationDate;
-import domain.reservation.model.ReservationMenu;
-import dto.UserPriceDto;
-import domain.user.UserReservation;
+import domain.user.dto.UserPriceDto;
+import domain.user.model.UserReservation;
 import java.util.List;
 import utils.PrintUtils;
 import view.OutputView;
 
 public class EventController {
 
-    private OutputView outputView = new OutputView();
+    private OutputView outputView;
+    private EventService eventService;
     private UserReservation userReservation;
-    private EventService eventService = new EventService();
+    public UserPriceDto userPriceDto;
 
-    public void createUserReservation(ReservationDate reservationDate, List<ReservationMenu> menuList) {
-        userReservation = eventService.getUserReservation(reservationDate, menuList);
+    public EventController(OutputView outputView, UserReservation userReservation, EventService eventService) {
+        this.outputView = outputView;
+        this.userReservation = userReservation;
+        this.eventService = eventService;
     }
 
     public void createEventList() {
-        outputView.printCheckBenefit(String.valueOf(userReservation.getReservedDate()));
-        createOrderMenu();
-        createPriceBeforeDiscount();
-
-        EventDiscount eventDiscount = eventService.getTotalEventDiscount();
+        int priceBeforeDiscount = userReservation.getPriceBeforeDiscount();
+        createPriceBeforeDiscount(priceBeforeDiscount);
+        EventDiscount eventDiscount = isEventDiscount(userReservation);
         createGiftMenu(eventDiscount);
         createBenefitsList(eventDiscount);
-        createTotalBenefitsPrice(eventDiscount);
-        createPriceAfterDiscount(eventDiscount);
+        createTotalBenefitsPrice(eventDiscount, priceBeforeDiscount);
+        createPriceAfterDiscount(userPriceDto, eventDiscount);
     }
 
-    private void createOrderMenu() {
-        outputView.printOrderMenu();
-        List<String> userMenuList = eventService.selectUserMenuList(userReservation.getMenuList());
-        for (String userMenu : userMenuList) {
-            PrintUtils.println(userMenu);
-        }
-        PrintUtils.println("");
-    }
-
-    private void createPriceBeforeDiscount() {
+    private void createPriceBeforeDiscount(int priceBeforeDiscount) {
         outputView.printPriceBeforeDiscount();
-        PrintUtils.println(eventService.selectMenuPrice());
+        PrintUtils.println(eventService.selectMenuPrice(priceBeforeDiscount));
         PrintUtils.println("");
+    }
+
+    private EventDiscount isEventDiscount(UserReservation userReservation) {
+        if (!userReservation.isHasEventBenefit()) {
+            return null;
+        }
+        return eventService.getTotalEventDiscount(userReservation.getReservationDate(), userReservation.getMenuList(),
+                userReservation.getPriceBeforeDiscount());
     }
 
     private void createGiftMenu(EventDiscount eventDiscount) {
@@ -62,20 +60,22 @@ public class EventController {
         PrintUtils.println("");
     }
 
-    private void createTotalBenefitsPrice(EventDiscount eventDiscount) {
+    private void createTotalBenefitsPrice(EventDiscount eventDiscount, int priceBeforeDiscount) {
         outputView.printTotalBenefitsPrice();
-        PrintUtils.println(eventService.selectTotalBenefitsPrice(eventDiscount));
+        if (eventDiscount == null) {
+            PrintUtils.println("없음");
+            PrintUtils.println("");
+            return;
+        }
+        userPriceDto = eventService.selectTotalBenefitsPrice(eventDiscount, priceBeforeDiscount);
+        PrintUtils.println(eventService.selectTotalBenefitsPrice(priceBeforeDiscount));
         PrintUtils.println("");
     }
 
-    private void createPriceAfterDiscount(EventDiscount eventDiscount) {
+    private void createPriceAfterDiscount(UserPriceDto userPriceDto, EventDiscount eventDiscount) {
         outputView.printPriceAfterDiscount();
-        PrintUtils.println(eventService.selectPriceAfterDiscount(eventDiscount));
+        PrintUtils.println(eventService.selectPriceAfterDiscount(userPriceDto, eventDiscount));
         PrintUtils.println("");
-    }
-
-    public UserPriceDto createUserReceiptPriceInfo() {
-        return eventService.selectUserReservation();
     }
 
 }

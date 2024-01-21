@@ -2,19 +2,35 @@ package christmas;
 
 import controller.BadgeController;
 import controller.EventController;
+import domain.event.service.EventCalculator;
+import domain.event.service.EventFacade;
+import domain.event.service.EventGenerator;
+import domain.event.service.EventService;
 import domain.reservation.service.ReservationMenuService;
 import domain.user.service.UserReservationService;
 import controller.ReservationController;
+import view.InputView;
+import view.OutputView;
 
 public class ChristmasEventApplication {
 
-    private EventController eventController = new EventController();
-    private BadgeController badgeController;
+    private InputView inputView = new InputView();
+    private OutputView outputView = new OutputView();
+    private EventCalculator eventCalculator = new EventCalculator();
+    private EventGenerator eventGenerator = new EventGenerator();
+
     public void run() {
-        ReservationController reservationController = new ReservationController(new ReservationMenuService(), new UserReservationService());
+        ReservationController reservationController = new ReservationController(inputView, outputView, new ReservationMenuService(),
+                new UserReservationService(eventCalculator, eventGenerator));
         reservationController.createUserReservation();
-        //eventController.createEventList();
-        badgeController = new BadgeController(eventController.createUserReceiptPriceInfo());
+
+        EventController eventController = new EventController(
+                outputView,
+                reservationController.userReservation,
+                new EventService(eventCalculator, eventGenerator, new EventFacade()));
+        eventController.createEventList();
+
+        BadgeController badgeController = new BadgeController(outputView, eventController.userPriceDto);
         badgeController.createEventBadge();
     }
 

@@ -12,13 +12,17 @@ import view.OutputView;
 
 public class ReservationController {
 
-    private InputView inputView = new InputView();
-    private OutputView outputView = new OutputView();
+    private InputView inputView;
+    private OutputView outputView;
     private ReservationMenuService reservationMenuService;
     private UserReservationService userReservationService;
+    public UserReservation userReservation;
 
-    public ReservationController(ReservationMenuService reservationMenuService,
+    public ReservationController(InputView inputView, OutputView outputView,
+                                 ReservationMenuService reservationMenuService,
                                  UserReservationService userReservationService) {
+        this.inputView = inputView;
+        this.outputView = outputView;
         this.reservationMenuService = reservationMenuService;
         this.userReservationService = userReservationService;
     }
@@ -26,11 +30,11 @@ public class ReservationController {
     public void createUserReservation() {
         ReservationDate reservationDate = createReservationDate();
         List<ReservationMenu> menuList = createReservationMenu();
-        UserReservation userReservation = userReservationService.getUserReservation(reservationDate, menuList);
+        userReservation = userReservationService.getUserReservation(reservationDate, menuList);
         selectUserReservation(reservationDate, menuList);
     }
 
-    public ReservationDate createReservationDate() {
+    private ReservationDate createReservationDate() {
         outputView.printGreeting();
         while (true) {
             try {
@@ -43,7 +47,7 @@ public class ReservationController {
     }
 
 
-    public List<ReservationMenu> createReservationMenu() {
+    private List<ReservationMenu> createReservationMenu() {
         while (true) {
             try {
                 String order = inputView.readOrder();

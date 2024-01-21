@@ -1,16 +1,17 @@
 package controller;
 
 import domain.badge.Badge;
-import dto.UserPriceDto;
+import domain.user.dto.UserPriceDto;
 import utils.PrintUtils;
 import view.OutputView;
 
 public class BadgeController {
 
-    private OutputView outputView = new OutputView();
+    private OutputView outputView;
     private UserPriceDto userPriceDto;
 
-    public BadgeController(UserPriceDto userPriceDto) {
+    public BadgeController(OutputView outputView, UserPriceDto userPriceDto) {
+        this.outputView = outputView;
         this.userPriceDto = userPriceDto;
     }
 
