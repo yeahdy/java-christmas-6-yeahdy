@@ -25,7 +25,8 @@ public class EventService {
         return eventGenerator.getValuePrice(priceBeforeDiscount);
     }
 
-    public EventDiscount getTotalEventDiscount(ReservationDate reservationDate, List<ReservationMenu> menuList, int priceBeforeDiscount) {
+    public EventDiscount getTotalEventDiscount(ReservationDate reservationDate, List<ReservationMenu> menuList,
+                                               int priceBeforeDiscount) {
         return eventFacade.getTotalEventDiscount(reservationDate, menuList, priceBeforeDiscount);
     }
 
@@ -50,7 +51,7 @@ public class EventService {
 
     }
 
-    public String selectTotalBenefitsPrice(int totalBenefitsPrice){
+    public String selectTotalBenefitsPrice(int totalBenefitsPrice) {
         return "-" + eventGenerator.getValuePrice(totalBenefitsPrice);
     }
 

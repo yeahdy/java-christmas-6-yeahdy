@@ -23,6 +23,7 @@ public class EventController {
 
     public void createEventList() {
         int priceBeforeDiscount = userReservation.getPriceBeforeDiscount();
+
         createPriceBeforeDiscount(priceBeforeDiscount);
         EventDiscount eventDiscount = isEventDiscount(userReservation);
         createGiftMenu(eventDiscount);

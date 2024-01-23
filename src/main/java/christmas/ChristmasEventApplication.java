@@ -20,7 +20,8 @@ public class ChristmasEventApplication {
     private EventGenerator eventGenerator = new EventGenerator();
 
     public void run() {
-        ReservationController reservationController = new ReservationController(inputView, outputView, new ReservationMenuService(),
+        ReservationController reservationController = new ReservationController(inputView, outputView,
+                new ReservationMenuService(),
                 new UserReservationService(eventCalculator, eventGenerator));
         reservationController.createUserReservation();
 
