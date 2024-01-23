@@ -3,6 +3,7 @@ package domain.event.service;
 import constants.UserEventMessageConstant;
 import domain.event.model.EventDiscount;
 import domain.reservation.model.ReservationMenu;
+import java.math.BigInteger;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -125,6 +126,9 @@ public class EventGenerator {
     }
 
     private String getCommaPrice(int price) {
+        if(price == 0){
+            return BigInteger.ZERO + "";
+        }
         DecimalFormat decimalFormat = new DecimalFormat("#,###");
         return decimalFormat.format(price);
     }

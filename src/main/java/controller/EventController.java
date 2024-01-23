@@ -4,6 +4,8 @@ import domain.event.model.EventDiscount;
 import domain.event.service.EventService;
 import domain.user.dto.UserPriceDto;
 import domain.user.model.UserReservation;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import utils.PrintUtils;
 import view.OutputView;
@@ -48,13 +50,22 @@ public class EventController {
 
     private void createGiftMenu(EventDiscount eventDiscount) {
         outputView.printGiftMenu();
-        PrintUtils.println(eventService.selectGiftEventDiscountPrice(eventDiscount));
+        String gift = "없음";
+        if (eventDiscount != null && eventDiscount.getGiftPrice() > 0) {
+            gift = eventService.selectGiftEventDiscountPrice();
+        }
+        PrintUtils.println(gift);
         PrintUtils.println("");
     }
 
     private void createBenefitsList(EventDiscount eventDiscount) {
         outputView.printBenefitsList();
-        List<String> benefitsList = eventService.selectBenefitsList(eventDiscount);
+
+        List<String> benefitsList = new ArrayList<>(Collections.singleton(("없음")));
+        if (eventDiscount != null) {
+            benefitsList = eventService.selectBenefitsList(eventDiscount);
+        }
+
         for (String benefit : benefitsList) {
             PrintUtils.println(benefit);
         }
@@ -63,13 +74,14 @@ public class EventController {
 
     private void createTotalBenefitsPrice(EventDiscount eventDiscount, int priceBeforeDiscount) {
         outputView.printTotalBenefitsPrice();
-        if (eventDiscount == null) {
-            PrintUtils.println("없음");
-            PrintUtils.println("");
-            return;
-        }
         userPriceDto = eventService.selectTotalBenefitsPrice(eventDiscount, priceBeforeDiscount);
-        PrintUtils.println(eventService.selectTotalBenefitsPrice(priceBeforeDiscount));
+
+        String totalBenefitsPrice = eventService.selectTotalBenefitsPrice(userPriceDto.getTotalBenefitsPrice());
+        if (!totalBenefitsPrice.equals("0")) {
+            totalBenefitsPrice = "-" + totalBenefitsPrice;
+        }
+
+        PrintUtils.println(totalBenefitsPrice);
         PrintUtils.println("");
     }
 
