@@ -5,9 +5,18 @@ import domain.date.DayType;
 import domain.reservation.model.ReservationMenu;
 import java.util.List;
 
-public class WeekdayEvent {
+public class WeekdayEvent extends Event{
 
-    public int selectDiscountPrice(DayType dayType, List<ReservationMenu> menuList) {
+    private DayType dayType;
+    private List<ReservationMenu> menuList;
+
+    public WeekdayEvent(DayType dayType, List<ReservationMenu> menuList) {
+        this.dayType = dayType;
+        this.menuList = menuList;
+    }
+
+    @Override
+    public int selectDiscountPrice() {
         if (!DayType.isEventWeekDay(dayType)) {
             return 0;
         }
@@ -21,6 +30,5 @@ public class WeekdayEvent {
 
         return 2023 * desertCount;
     }
-
 
 }

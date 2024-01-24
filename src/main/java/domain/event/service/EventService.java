@@ -25,6 +25,7 @@ public class EventService {
 
     public EventDiscount getTotalEventDiscount(ReservationDate reservationDate, List<ReservationMenu> menuList,
                                                int priceBeforeDiscount) {
+
         return eventFacade.getTotalEventDiscount(reservationDate, menuList, priceBeforeDiscount);
     }
 

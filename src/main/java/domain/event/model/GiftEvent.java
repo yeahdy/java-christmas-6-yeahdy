@@ -1,13 +1,19 @@
 package domain.event.model;
 
-public class GiftEvent {
+public class GiftEvent extends Event{
 
-    public int selectDiscountPrice(int price) {
-        if (price < 120_000) {
+    private int priceBeforeDiscount;
+
+    public GiftEvent(int priceBeforeDiscount) {
+        this.priceBeforeDiscount = priceBeforeDiscount;
+    }
+
+    @Override
+    public int selectDiscountPrice() {
+        if (priceBeforeDiscount < 120_000) {
             return 0;
         }
         return 25_000;
     }
-
 
 }
