@@ -5,7 +5,7 @@ import domain.date.DayType;
 import domain.reservation.model.ReservationMenu;
 import java.util.List;
 
-public class WeekendEvent extends Event{
+public class WeekendEvent implements Event{
 
     private DayType dayType;
     private List<ReservationMenu> menuList;

@@ -1,6 +1,6 @@
 package domain.event.model;
 
-public class GiftEvent extends Event{
+public class GiftEvent implements Event{
 
     private int priceBeforeDiscount;
 

@@ -4,7 +4,7 @@ import domain.date.AnniversaryDate;
 import domain.date.DayType;
 import java.time.LocalDate;
 
-public class SpecialEvent extends Event{
+public class SpecialEvent implements Event{
 
     private DayType dayType;
 

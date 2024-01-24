@@ -1,6 +1,6 @@
 package domain.event.model;
 
-public class ChristmasEvent extends Event{
+public class ChristmasEvent implements Event{
 
     private int reservedDate;
 

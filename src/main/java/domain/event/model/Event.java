@@ -1,5 +1,5 @@
 package domain.event.model;
 
-public abstract class Event {
-    public abstract int selectDiscountPrice();
+public interface Event {
+    int selectDiscountPrice();
 }
