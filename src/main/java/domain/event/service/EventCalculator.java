@@ -1,24 +1,8 @@
 package domain.event.service;
 
-import domain.event.model.EventDiscount;
-import domain.reservation.model.ReservationMenu;
 import domain.user.dto.UserPriceDto;
-import java.util.List;
 
 public class EventCalculator {
-
-    /**
-     * 할인 전 총주문 금액
-     */
-    public int getTotalMenuPrice(List<ReservationMenu> reservationMenuList) {
-        int totalMenuPrice = 0;
-        for (ReservationMenu reservationMenu : reservationMenuList) {
-            //FIXME: 예약메뉴 도메인에서 할인 전 총주문금액을 계산하도록 변경
-            totalMenuPrice += reservationMenu.getMenu().getPrice() * reservationMenu.getCount();
-        }
-        return totalMenuPrice;
-    }
-
 
     /**
      * 할인 후 예상 결제 금액

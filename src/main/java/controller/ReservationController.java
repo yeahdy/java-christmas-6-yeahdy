@@ -30,8 +30,8 @@ public class ReservationController {
     public void createUserReservation() {
         ReservationDate reservationDate = createReservationDate();
         List<ReservationMenu> menuList = createReservationMenu();
-        userReservation = userReservationService.getUserReservation(reservationDate, menuList);
         selectUserReservation(reservationDate, menuList);
+        userReservation = new UserReservation(reservationDate, menuList);
     }
 
     private ReservationDate createReservationDate() {

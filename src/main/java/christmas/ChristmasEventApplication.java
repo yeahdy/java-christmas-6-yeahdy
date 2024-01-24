@@ -16,19 +16,18 @@ public class ChristmasEventApplication {
 
     private InputView inputView = new InputView();
     private OutputView outputView = new OutputView();
-    private EventCalculator eventCalculator = new EventCalculator();
     private EventGenerator eventGenerator = new EventGenerator();
 
     public void run() {
         ReservationController reservationController = new ReservationController(inputView, outputView,
                 new ReservationMenuService(),
-                new UserReservationService(eventCalculator, eventGenerator));
+                new UserReservationService(eventGenerator));
         reservationController.createUserReservation();
 
         EventController eventController = new EventController(
                 outputView,
                 reservationController.userReservation,
-                new EventService(eventCalculator, eventGenerator, new EventFacade()));
+                new EventService(new EventCalculator(), eventGenerator, new EventFacade()));
         eventController.createEventList();
 
         BadgeController badgeController = new BadgeController(outputView, eventController.userPriceDto);
