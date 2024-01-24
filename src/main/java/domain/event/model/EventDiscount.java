@@ -16,6 +16,21 @@ public class EventDiscount {
         this.giftPrice = giftPrice;
     }
 
+    /**
+     * 총혜택 금액
+     */
+    public int getTotalBenefitsPrice() {
+        //FIXME: EventDiscount에게 총 할인금액을 계산하는 역할을 주고, 외부에서 해당 메세지를 사용하도록 변경
+        int totalBenefitsPrice = 0;
+        totalBenefitsPrice += christmasPrice;
+        totalBenefitsPrice += weekdayPrice;
+        totalBenefitsPrice += weekendPrice;
+        totalBenefitsPrice += specialPrice;
+        totalBenefitsPrice += giftPrice;
+        return totalBenefitsPrice;
+    }
+
+
     public int getChristmasPrice() {
         return christmasPrice;
     }

@@ -40,7 +40,7 @@ public class EventService {
     public UserPriceDto selectTotalBenefitsPrice(EventDiscount eventDiscount, int priceBeforeDiscount) {
         int totalBenefitsPrice = 0;
         if(eventDiscount != null){
-            totalBenefitsPrice = eventCalculator.getTotalBenefitsPrice(eventDiscount);
+            totalBenefitsPrice = eventDiscount.getTotalBenefitsPrice();
         }
         return new UserPriceDto(priceBeforeDiscount, totalBenefitsPrice);
 

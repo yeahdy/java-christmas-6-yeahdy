@@ -19,19 +19,6 @@ public class EventCalculator {
         return totalMenuPrice;
     }
 
-    /**
-     * 총혜택 금액
-     */
-    public int getTotalBenefitsPrice(EventDiscount eventDiscount) {
-        //FIXME: Event 추상클래스를 메소드에 총 혜택금액 구해서 메세지를 전달하도록 구현
-        int totalBenefitsPrice = 0;
-        totalBenefitsPrice += eventDiscount.getChristmasPrice();
-        totalBenefitsPrice += eventDiscount.getWeekdayPrice();
-        totalBenefitsPrice += eventDiscount.getWeekendPrice();
-        totalBenefitsPrice += eventDiscount.getSpecialPrice();
-        totalBenefitsPrice += eventDiscount.getGiftPrice();
-        return totalBenefitsPrice;
-    }
 
     /**
      * 할인 후 예상 결제 금액
