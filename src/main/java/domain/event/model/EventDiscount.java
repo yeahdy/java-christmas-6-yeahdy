@@ -1,5 +1,7 @@
 package domain.event.model;
 
+import java.util.Map;
+
 public class EventDiscount {
 
     private final int christmasPrice;
@@ -36,25 +38,21 @@ public class EventDiscount {
     //NOTE: 굳이 이벤트계산(EventCalculator)을 분리해서 불필요한 의존성을 만들었음
     // 이벤트 할인을 위한 정보를 가장많이 알고 있는 객체에게 역할을 부여해서 메세지를 전달하도록 변경
     // getGiftPrice() > this.giftPrice
-    public int getPriceAfterDiscount(int totalBenefitsPrice, int priceBeforeDiscount){
+    public int getPriceAfterDiscount(int totalBenefitsPrice, int priceBeforeDiscount) {
         return priceBeforeDiscount - (totalBenefitsPrice - this.giftPrice);
     }
 
-
-    public int getChristmasPrice() {
-        return christmasPrice;
-    }
-
-    public int getWeekdayPrice() {
-        return weekdayPrice;
-    }
-
-    public int getWeekendPrice() {
-        return weekendPrice;
-    }
-
-    public int getSpecialPrice() {
-        return specialPrice;
+    /**
+     * 혜택내역 전체 정보
+     */
+    public Map<EventType,Integer> getEventBenefitsInfo() {
+        return Map.of(
+                EventType.CHRISTMAS_DISCOUNT, christmasPrice,
+                EventType.WEEKDAY_DISCOUNT, weekdayPrice,
+                EventType.WEEKEND_DISCOUNT, weekendPrice,
+                EventType.SPECIAL_DISCOUNT, specialPrice,
+                EventType.GIFT_DISCOUNT, giftPrice
+        );
     }
 
     public int getGiftPrice() {

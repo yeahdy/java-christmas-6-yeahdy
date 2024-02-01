@@ -2,11 +2,13 @@ package domain.event.service;
 
 import constants.UserEventMessageConstant;
 import domain.event.model.EventDiscount;
+import domain.event.model.EventType;
 import domain.reservation.model.ReservationMenu;
 import java.math.BigInteger;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class EventGenerator {
 
@@ -48,85 +50,35 @@ public class EventGenerator {
     /**
      * 혜택 내역
      */
-    // FIXME: EventDiscount 는 도메인이 아니라 DTO 역할로 사용되어야함
-    //  getBenefitsList(Event event)
-    //  어떤 타입인지 어떻게 아는지? 외부에서 인자로 객체전달 ,
-    //  클라이언트 코드는 도메인 객체에 작성X
-    //  사용은 event.getEventName() / event.getDiscountPrice
+    // NOTE: EventDiscount는 할인된 금액 정보를 가지고 있는 객체
+    //  eventDiscount가 할인된 금액정보를 클라이언트에게 전달하도록 변경하기
+    //  결과1:이벤트 할인가격이 어떤 이벤트인지 알 수 없기 때문에 enum 타입을 만들어서 이벤트정보-할인가격을 연관지음
+    //  결과2: EventDiscount의 필드 getter가 사라지고, 메소드 전달을 통해 결합도를 낮춤
     public List<String> getBenefitsList(EventDiscount eventDiscount) {
         List<String> benefitsList = new ArrayList<>();
-        benefitsList = addChristmasPriceMessage(eventDiscount.getChristmasPrice(), benefitsList);
-        benefitsList = addWeekdayPriceMessage(eventDiscount.getWeekdayPrice(), benefitsList);
-        benefitsList = addWeekendPriceMessage(eventDiscount.getWeekendPrice(), benefitsList);
-        benefitsList = addSpecialPriceMessage(eventDiscount.getSpecialPrice(), benefitsList);
-        benefitsList = addGiftPriceMessage(eventDiscount.getGiftPrice(), benefitsList);
+        Map<EventType,Integer> eventBenefitsInfo = eventDiscount.getEventBenefitsInfo();
 
-        return benefitsList;
-    }
-
-    private List<String> addChristmasPriceMessage(int christmasPrice, List<String> benefitsList) {
-        if (christmasPrice == 0) {
-            return benefitsList;
+        for(EventType event : EventType.values()){
+            int price = eventBenefitsInfo.get(event);
+            if(price == 0){
+                continue;
+            }
+            benefitsList.add(addPriceMessage(price, event.getName()));
         }
-        String message = UserEventMessageConstant.BENEFITS_PRICE_LIST
-                .replace("{event}",
-                        UserEventMessageConstant.CHRISTMAS_DISCOUNT);   //FIXME: Event에 getEventName(); 추상메소드로 만들어서 사용하는거 어떤지?
-        message = message.replace("{price}", getCommaPrice(christmasPrice));
-
-        benefitsList.add(message);
         return benefitsList;
     }
 
-    private List<String> addWeekdayPriceMessage(int weekdayPrice, List<String> benefitsList) {
-        if (weekdayPrice == 0) {
-            return benefitsList;
-        }
-        String message = UserEventMessageConstant.BENEFITS_PRICE_LIST
-                .replace("{event}", UserEventMessageConstant.WEEKDAY_DISCOUNT);
-        message = message.replace("{price}", getCommaPrice(weekdayPrice));
-
-        benefitsList.add(message);
-        return benefitsList;
+    // NOTE: 같은 구조로 반복되는 메소드 구조
+    //  동일한 형태로 요구사항 변경 시 모두 함께 변경되는 코드이기 때문에 인자를 추가해서 중복코드를 제거하기
+    private String addPriceMessage(int price, String eventName) {
+        String message = UserEventMessageConstant.BENEFITS_PRICE_LIST.replace("{event}", eventName);
+        message = message.replace("{price}", getCommaPrice(price));
+        return message;
     }
 
-    private List<String> addWeekendPriceMessage(int weekendPrice, List<String> benefitsList) {
-        if (weekendPrice == 0) {
-            return benefitsList;
-        }
-        String message = UserEventMessageConstant.BENEFITS_PRICE_LIST
-                .replace("{event}", UserEventMessageConstant.WEEKEND_DISCOUNT);
-        message = message.replace("{price}", getCommaPrice(weekendPrice));
-
-        benefitsList.add(message);
-        return benefitsList;
-    }
-
-    private List<String> addSpecialPriceMessage(int specialPrice, List<String> benefitsList) {
-        if (specialPrice == 0) {
-            return benefitsList;
-        }
-        String message = UserEventMessageConstant.BENEFITS_PRICE_LIST
-                .replace("{event}", UserEventMessageConstant.SPECIAL_DISCOUNT);
-        message = message.replace("{price}", getCommaPrice(specialPrice));
-
-        benefitsList.add(message);
-        return benefitsList;
-    }
-
-    private List<String> addGiftPriceMessage(int giftPrice, List<String> benefitsList) {
-        if (giftPrice == 0) {
-            return benefitsList;
-        }
-        String message = UserEventMessageConstant.BENEFITS_PRICE_LIST
-                .replace("{event}", UserEventMessageConstant.GIFT_DISCOUNT);
-        message = message.replace("{price}", getCommaPrice(giftPrice));
-
-        benefitsList.add(message);
-        return benefitsList;
-    }
 
     private String getCommaPrice(int price) {
-        if(price == 0){
+        if (price == 0) {
             return BigInteger.ZERO + "";
         }
         DecimalFormat decimalFormat = new DecimalFormat("#,###");
