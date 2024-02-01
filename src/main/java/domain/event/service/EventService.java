@@ -8,13 +8,10 @@ import java.util.List;
 
 public class EventService {
 
-    private EventCalculator eventCalculator;
     private EventGenerator eventGenerator;
     private EventFacade eventFacade;
 
-    public EventService(EventCalculator eventCalculator, EventGenerator eventGenerator,
-                        EventFacade eventFacade) {
-        this.eventCalculator = eventCalculator;
+    public EventService(EventGenerator eventGenerator, EventFacade eventFacade) {
         this.eventGenerator = eventGenerator;
         this.eventFacade = eventFacade;
     }
@@ -39,7 +36,7 @@ public class EventService {
 
     public UserPriceDto selectTotalBenefitsPrice(EventDiscount eventDiscount, int priceBeforeDiscount) {
         int totalBenefitsPrice = 0;
-        if(eventDiscount != null){
+        if (eventDiscount != null) {
             totalBenefitsPrice = eventDiscount.getTotalBenefitsPrice();
         }
         return new UserPriceDto(priceBeforeDiscount, totalBenefitsPrice);
@@ -50,12 +47,14 @@ public class EventService {
         return eventGenerator.getValuePrice(totalBenefitsPrice);
     }
 
+
     public String selectPriceAfterDiscount(UserPriceDto userPriceDto, EventDiscount eventDiscount) {
         if (eventDiscount == null) {
             return eventGenerator.getValuePrice(userPriceDto.getPriceBeforeDiscount());
         }
-        int priceAfterDiscount = eventCalculator.getPriceAfterDiscount(userPriceDto, eventDiscount.getGiftPrice());
-        return eventGenerator.getValuePrice(priceAfterDiscount);
+        return eventGenerator.getValuePrice(
+                eventDiscount.getPriceAfterDiscount(userPriceDto.getTotalBenefitsPrice(),
+                        userPriceDto.getPriceBeforeDiscount()));
     }
 
 }

@@ -20,7 +20,7 @@ public class EventDiscount {
      * 총혜택 금액
      */
     public int getTotalBenefitsPrice() {
-        //FIXME: EventDiscount에게 총 할인금액을 계산하는 역할을 주고, 외부에서 해당 메세지를 사용하도록 변경
+        //NOTE: EventDiscount에게 총 할인금액을 계산하는 역할을 주고, 외부에서 해당 메세지를 사용하도록 변경
         int totalBenefitsPrice = 0;
         totalBenefitsPrice += christmasPrice;
         totalBenefitsPrice += weekdayPrice;
@@ -28,6 +28,16 @@ public class EventDiscount {
         totalBenefitsPrice += specialPrice;
         totalBenefitsPrice += giftPrice;
         return totalBenefitsPrice;
+    }
+
+    /**
+     * 할인 후 예상 결제 금액
+     */
+    //NOTE: 굳이 이벤트계산(EventCalculator)을 분리해서 불필요한 의존성을 만들었음
+    // 이벤트 할인을 위한 정보를 가장많이 알고 있는 객체에게 역할을 부여해서 메세지를 전달하도록 변경
+    // getGiftPrice() > this.giftPrice
+    public int getPriceAfterDiscount(int totalBenefitsPrice, int priceBeforeDiscount){
+        return priceBeforeDiscount - (totalBenefitsPrice - this.giftPrice);
     }
 
 

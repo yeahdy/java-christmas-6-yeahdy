@@ -2,7 +2,6 @@ package christmas;
 
 import controller.BadgeController;
 import controller.EventController;
-import domain.event.service.EventCalculator;
 import domain.event.service.EventFacade;
 import domain.event.service.EventGenerator;
 import domain.event.service.EventService;
@@ -25,9 +24,7 @@ public class ChristmasEventApplication {
         reservationController.createUserReservation();
 
         EventController eventController = new EventController(
-                outputView,
-                reservationController.userReservation,
-                new EventService(new EventCalculator(), eventGenerator, new EventFacade()));
+                outputView, reservationController.userReservation, new EventService(eventGenerator, new EventFacade()));
         eventController.createEventList();
 
         BadgeController badgeController = new BadgeController(outputView, eventController.userPriceDto);
