@@ -21,11 +21,11 @@ public class UserReservation {
     /**
      * 할인 전 총주문 금액
      */
-    //FIXME: UserReservation 도메인에서 할인 전 총주문금액을 계산하도록 변경
+    //NOTE: UserReservation 도메인에서 할인 전 총주문금액을 계산하도록 변경
     private int getTotalMenuPrice(List<ReservationMenu> menuList) {
         int totalMenuPrice = 0;
         for (ReservationMenu reservationMenu : menuList) {
-            //FIXME: 예약메뉴가 직접 메뉴 갯수만큼 금액을 계산하도록 역할 주기
+            //NOTE: 예약메뉴가 직접 메뉴 갯수만큼 금액을 계산하도록 역할 주기
             totalMenuPrice += reservationMenu.calculateMenuPrice();
         }
         return totalMenuPrice;
