@@ -26,8 +26,11 @@ public class EventService {
         return eventFacade.getTotalEventDiscount(reservationDate, menuList, priceBeforeDiscount);
     }
 
-    public String selectGiftEventDiscountPrice() {
-        return eventGenerator.getUserGift("샴페인", 1);
+    public String selectGiftEventDiscountPrice(EventDiscount eventDiscount) {
+        if(eventDiscount.existGiftPrice()){
+            eventGenerator.getUserGift("샴페인", 1);
+        }
+        return "없음";
     }
 
     public List<String> selectBenefitsList(EventDiscount eventDiscount) {

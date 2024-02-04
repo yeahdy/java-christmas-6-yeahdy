@@ -50,11 +50,7 @@ public class EventController {
 
     private void createGiftMenu(EventDiscount eventDiscount) {
         outputView.printGiftMenu();
-        String gift = "없음";
-        if (eventDiscount != null && eventDiscount.getGiftPrice() > 0) {
-            gift = eventService.selectGiftEventDiscountPrice();
-        }
-        PrintUtils.println(gift);
+        PrintUtils.println(eventService.selectGiftEventDiscountPrice(eventDiscount));
         PrintUtils.println("");
     }
 
