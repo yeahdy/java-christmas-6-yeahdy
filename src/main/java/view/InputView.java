@@ -8,6 +8,8 @@ import constants.ErrorCodeConstant;
 import utils.PrintUtils;
 
 public class InputView {
+    protected InputView() {
+    }
 
     public int readDate() {
         PrintUtils.println(WHEN_IS_THE_DATE);

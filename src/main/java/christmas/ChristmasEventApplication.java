@@ -10,17 +10,24 @@ import domain.user.service.UserReservationService;
 import controller.ReservationController;
 import view.InputView;
 import view.OutputView;
+import view.ViewFactory;
 
 public class ChristmasEventApplication {
 
-    private InputView inputView = new InputView();
-    private OutputView outputView = new OutputView();
-    private EventGenerator eventGenerator = new EventGenerator();
+    private ViewFactory viewFactory;
+    private EventGenerator eventGenerator;
+
+    public ChristmasEventApplication(ViewFactory viewFactory, EventGenerator eventGenerator) {
+        this.viewFactory = viewFactory;
+        this.eventGenerator = eventGenerator;
+    }
 
     public void run() {
-        ReservationController reservationController = new ReservationController(inputView, outputView,
-                new ReservationMenuService(),
-                new UserReservationService(eventGenerator));
+        InputView inputView = viewFactory.getInputView();
+        OutputView outputView = viewFactory.getOutputView();
+
+        ReservationController reservationController = new ReservationController(
+                inputView, outputView, new ReservationMenuService(), new UserReservationService(eventGenerator));
         reservationController.createUserReservation();
 
         EventController eventController = new EventController(

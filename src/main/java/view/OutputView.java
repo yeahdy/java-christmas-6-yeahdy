@@ -14,6 +14,8 @@ import static constants.EventMessageConstant.TOTAL_BENEFITS_PRICE;
 import utils.PrintUtils;
 
 public class OutputView {
+    protected OutputView() {
+    }
 
     public void printGreeting() {
         PrintUtils.println(GREETING);
