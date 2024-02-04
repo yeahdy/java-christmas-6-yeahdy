@@ -8,7 +8,7 @@ public class ReservationMenu {
     private int count;
 
      public int calculateMenuPrice(){
-         return menu.getPrice() * count;
+         return menu.calculateMenuPrice(count);
      }
 
     public ReservationMenu(Menu menu, int count) {

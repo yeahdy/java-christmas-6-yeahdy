@@ -56,11 +56,12 @@ public enum Menu {
         return false;
     }
 
+    public int calculateMenuPrice(int count){
+        return price * count;
+    }
+
     public String getFood() {
         return food;
     }
 
-    public int getPrice() {
-        return price;
-    }
 }
