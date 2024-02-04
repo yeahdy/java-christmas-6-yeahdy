@@ -27,7 +27,7 @@ public class EventService {
     }
 
     public String selectGiftEventDiscountPrice(EventDiscount eventDiscount) {
-        if(eventDiscount.existGiftPrice()){
+        if(eventDiscount != null && eventDiscount.existGiftPrice()){
             eventGenerator.getUserGift("샴페인", 1);
         }
         return "없음";

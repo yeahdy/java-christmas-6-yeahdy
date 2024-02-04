@@ -58,7 +58,7 @@ public class EventDiscount {
     //NOTE: 증정품 유무확인은 해당 정보를 가지고 있는 객체에서 처리하도록 하고,
     // getGiftPrice와 같이 증정품의 가격은 외부에서 알 필요가 없고 증정품의 유무확인에 대해서만 알면된다.
     public boolean existGiftPrice(){
-        if (this != null && this.giftPrice > 0) {
+        if (this.giftPrice > 0) {
             return true;
         }
         return false;
